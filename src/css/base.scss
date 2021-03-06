@@ -2,14 +2,50 @@
 @import 'color';
 @import 'mobile';
 
-/* This is an example of using Sass, otherwise plain CSS works too*/
-$primary-background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
-;
-
 .title {
   background: center / cover url("../images/hotel-pattern.jpg")
 }
 
 body {
   background: $brown;
+  height: 100%;
+}
+
+.greeting {
+  text-align: center;
+  font-size: 40px;
+  color: $pink;
+  background-color: $brown;
+  margin: 0;
+  padding: 20px 0px 20px 0px
+}
+
+.bookings {
+  display:flex;
+  flex-direction: column;
+  margin: 5%;
+}
+
+.booking {
+  font-size: 25px;
+  margin: 5%;
+  padding-left: 10px;
+  color: $pink;
+}
+
+.accent {
+  color: $green;
+}
+
+.footerGap {
+  height: 16%;
+}
+
+footer {
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  margin: 0;
+  height:16%;
+  background: center / cover url("../images/hotel-pattern.jpg")
 }

@@ -1,33 +1,52 @@
-// This is the JavaScript entry file - your code begins here
-// Do not delete or rename this file ********
+import './css/base.scss'
+import Hotel from './hotel';
+import Customer from './customer';
 
-// An example of how you tell webpack to use a CSS (SCSS) file
-import './css/base.scss';
+const apiData = [
+  fetch('http://localhost:3001/api/v1/rooms'),
+  fetch('http://localhost:3001/api/v1/bookings'),
+  fetch('http://localhost:3001/api/v1/customers')
+]
+let allRooms, allBookings, allCustomers;
+let hotel;
+let customer;
+const guestName = document.querySelector('#guestName');
+const guestBookings = document.querySelector('#guestBookings');
 
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
-import './images/turing-logo.png'
-fetchBookings()
+Promise.all(apiData)
+  .then(responses => Promise.all(responses.map(response => response.json())))
+  .then(data => {
+    allRooms = data[0].rooms;
+    allBookings = data[1].bookings;
+    allCustomers = data[2].customers;
+    createHotel(allRooms, allBookings, allCustomers)
+  })
 
-console.log('This is the JavaScript entry file - your code begins here.');
-console.log(fetchBookings())
+//document.querySelector('.overlook').addEventListener('click', test)
 
-let testBooking;
-let eventTest;
-console.log('global var call', testBooking)
-window.addEventListener('load', testfunction)
-
-function testfunction() {
-  console.log('eventListenerfunction', testBooking);
-  eventTest = testBooking;
-  console.log('listenerEventTest', eventTest)
+function createHotel(rooms, bookings, customers) {
+  hotel = new Hotel(rooms, bookings, customers)
+  createCustomer(0);
 }
-console.log('globalEventTest', eventTest)
 
+function createCustomer(customerInfo) {
+  customer = new Customer(allCustomers[0]);
+  customer.findBookings(allBookings);
+  customer.findTotal(allRooms);
+  updateGuestName()
+  updateBookings()
+}
 
+function updateGuestName() {
+  guestName.innerText = customer.name
+}
 
-function fetchBookings() {
-fetch('http://localhost:3001/api/v1/bookings')
-  .then(response => response.json())
-  .then(data => testBooking = data.bookings)
-  .catch(data=> console.log(data))
+function updateBookings() {
+  customer.myBookings.forEach(booking => {
+    guestBookings.innerHTML+= `
+    <section class="booking">
+      <h3>Booked For:<span class="accent">${booking.date}</span></h3>
+      <h3>Room Number:<span class="accent">${booking.roomNumber}</span></h3>
+    </section>`
+  })
 }
