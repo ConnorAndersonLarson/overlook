@@ -84,7 +84,7 @@ describe('Hotel', function() {
     it('should be a function', function() {
       expect(Hotel).to.be.a('function');
     });
-    it('should be an instance of user', function() {
+    it('should be an instance of Hotel', function() {
       expect(testHotel).to.be.an.instanceof(Hotel);
     });
     it('should contain all rooms', function() {
@@ -105,16 +105,16 @@ describe('Hotel', function() {
     });
     //createNewBooking(customerID, bookDate, roomNumber, directory)
     it('should be able to create a new booking', function() {
-      testHotel.createNewBooking(1, "2020/01/10", 4, testBookings)
+      testHotel.createNewBooking(1, "2020/01/10", 4, testBookings.bookings)
       expect(testBookings.bookings[3].userID).to.equal(1)
       expect(testBookings.bookings[3].date).to.equal("2020/01/10")
       expect(testBookings.bookings[3].roomNumber).to.equal(4)
     });
     it('should return an affirmative upon a successful booking', function() {
-      expect(testHotel.createNewBooking(1, "2020/01/10", 4, testBookings)).to.equal('Your booking has been confirmed.')
+      expect(testHotel.createNewBooking(1, "2020/01/10", 4, testBookings.bookings)).to.equal('Your booking has been confirmed.')
     });
     it('should return an error upon an unsuccessful booking', function() {
-      expect(testHotel.createNewBooking(2, "2020/01/10", 1, testBookings)).to.equal('Oops, that room is unavailable.')
+      expect(testHotel.createNewBooking(2, "2020/01/10", 1, testBookings.bookings)).to.equal('Oops, that room is unavailable.')
     });
   });
 });
