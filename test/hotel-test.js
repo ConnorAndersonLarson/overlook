@@ -100,10 +100,6 @@ describe('Hotel', function() {
 
   describe('Methods', function() {
 
-    xit('should create a new Customer class based on an existing customer', function() {
-      expect(testHotel.findCustomer(1)).to.be.an.instanceof(Customer);
-    });
-    //createNewBooking(customerID, bookDate, roomNumber, directory)
     it('should be able to create a new booking', function() {
       testHotel.createNewBooking(1, "2020/01/10", 4, testBookings.bookings)
       expect(testBookings.bookings[3].userID).to.equal(1)

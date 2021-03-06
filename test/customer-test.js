@@ -92,16 +92,19 @@ let booking1, booking2, booking3;
       expect(testCustomer).to.be.an.instanceof(Customer);
     });
     it('should have an ID', function() {
-      expect(testCustomer.UserID).to.equal(1);
+      expect(testCustomer.userID).to.equal(1);
     });
     it('should have a name', function() {
       expect(testCustomer.name).to.equal('Leatha Ullrich');
     });
-    it('should have a total amount spent on rooms', function() {
-      expect(testCustomer.totalSpent).to.equal(787.84)
-    });
     it('should have a list of all their bookings', function() {
-      expect(testCustomer.totalSpent).to.deep.equal([booking2, booking3])
+      testCustomer.findBookings(testBookings.bookings);
+      expect(testCustomer.myBookings).to.deep.equal([booking2, booking3])
+    });
+    it('should have a total amount spent on rooms', function() {
+      testCustomer.findBookings(testBookings.bookings);
+      testCustomer.findTotal(testRooms.rooms);
+      expect(testCustomer.totalSpent).to.equal("787.84")
     });
   });
 
@@ -117,7 +120,7 @@ let booking1, booking2, booking3;
       expect(testCustomer.createNewBooking("2020/01/10", 4, testBookings.bookings)).to.equal('Your booking has been confirmed.')
     });
     it('should return an error upon an unsuccessful booking', function() {
-      expect(testCustomer.createNewBooking("2020/04/22", 4, testBookings.bookings)).to.equal('Oops, that room is unavailable.')
+      expect(testCustomer.createNewBooking("2020/04/22", 1, testBookings.bookings)).to.equal('Oops, that room is unavailable.')
     });
     it('should inform the user if they already booked a room', function() {
       expect(testCustomer.createNewBooking("2020/01/10", 1, testBookings.bookings)).to.equal("Looks like you've already booked this room")
