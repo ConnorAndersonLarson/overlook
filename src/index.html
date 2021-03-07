@@ -16,16 +16,32 @@
     </header>
     <main>
       <section class="bookings" id="guestBookings">
-        <!-- <div>
-          <h3>Your current booking</h3>
-          <section>
-          </section>
-        </div>
+      </section>
+      <section class="booking-form hidden" id="bookingForm">
+        <h3 class="stay">Come Stay With Us...</h3>
+        <label for="bookDate">Date: </label><input type="date" id="bookDate"
+            name="Book Date" value="1921-07-04" min="2020/01/01" max="2022/01/01"/>
+        <fieldset>
+          <legend for="Bidet">Bidet?</legend>
+          <div>
+            <input type="radio" id="yes" name="Bidet" value="Yes" checked />
+            <label for="yes">Yes</label>
+          </div>
+          <div>
+            <input type="radio" id="no" name="Bidet" value="No"/>
+            <label for="no">No</label>
+          </div>
+          <div>
+            <input type="radio" id="doesntMatter" name="Bidet"
+              value="Doesnt matter"/>
+            <label for="doesntMatter">Doesn't Matter</label>
+          </div>
+        </fieldset>
         <div>
-          <h3>Your future bookings</h3>
-          <section>
-          </section>
-        </div> -->
+          <label for="numBeds">Number of Beds: </label><input type="number"
+          id="numBeds" name="beds" min="1" max="2"/>
+        </div>
+        <h3 class="stay">For Ever, and Ever, and Ever...</h3>
       </section>
     </main>
     <footer>
@@ -33,7 +49,7 @@
           <h3 class="total-spending">Your</br> Total</br> Spending:</h3>
           <h2 class="user-spending" id="userSpending">$</h2>
         </section>
-        <button class="book-a-room">Book your next visit</button>
+        <button type="button" class="book-a-room" id="bookRoom">Book your next visit</button>
     </footer>
   </body>
 </html>

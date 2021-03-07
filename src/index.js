@@ -10,9 +10,15 @@ const apiData = [
 let allRooms, allBookings, allCustomers;
 let hotel;
 let customer;
+
 const guestName = document.querySelector('#guestName');
 const guestBookings = document.querySelector('#guestBookings');
 const userSpending = document.querySelector('#userSpending');
+const bookingForm = document.querySelector('#bookingForm');
+const bookRoom = document.querySelector('#bookRoom');
+
+bookRoom.addEventListener('click', showBookingForm)
+
 Promise.all(apiData)
   .then(responses => Promise.all(responses.map(response => response.json())))
   .then(data => {
@@ -46,12 +52,17 @@ function updateBookings() {
   customer.myBookings.forEach(booking => {
     guestBookings.innerHTML+= `
     <section class="booking">
-      <h3>Booked For:<span class="accent">${booking.date}</span></h3>
-      <h3>Room Number:<span class="accent">${booking.roomNumber}</span></h3>
+      <h3>Booked For: <span class="accent">${booking.date}</span></h3>
+      <h3>Room Number: <span class="accent">${booking.roomNumber}</span></h3>
     </section>`
   })
 }
 
 function updateTotalSpent() {
   userSpending.innerText += customer.totalSpent;
+}
+
+function showBookingForm() {
+  guestBookings.classList.toggle('hidden');
+  bookingForm.classList.toggle('hidden');
 }
