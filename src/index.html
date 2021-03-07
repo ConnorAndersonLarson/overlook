@@ -19,27 +19,41 @@
       </section>
       <section class="booking-form hidden" id="bookingForm">
         <h3 class="stay">Come Stay With Us...</h3>
-        <label for="bookDate">Date: </label><input type="date" id="bookDate"
-            name="Book Date" value="1921-07-04" min="2020/01/01" max="2022/01/01"/>
-        <fieldset>
-          <legend for="Bidet">Bidet?</legend>
-          <div>
-            <input type="radio" id="yes" name="Bidet" value="Yes" checked />
-            <label for="yes">Yes</label>
+        <div class="input date">
+          <label for="bookDate">Date: </label>
+          <input type="date" id="bookDate" name="Book Date"
+            value="1921-07-04" min="2020/01/01" max="2022/01/01"/>
           </div>
-          <div>
-            <input type="radio" id="no" name="Bidet" value="No"/>
-            <label for="no">No</label>
-          </div>
-          <div>
-            <input type="radio" id="doesntMatter" name="Bidet"
-              value="Doesnt matter"/>
-            <label for="doesntMatter">Doesn't Matter</label>
-          </div>
-        </fieldset>
-        <div>
-          <label for="numBeds">Number of Beds: </label><input type="number"
-          id="numBeds" name="beds" min="1" max="2"/>
+          <div class="room-features">
+            <div class="input room-type">
+              <label for="roomType">Room Type: </label>
+              <select id="roomType" name="roomType">
+                <option value="single room">single room</option>
+                <option value="junior suite">junior suite</option>
+                <option value="suite">suite</option>
+                <option value="residential suite">residential suite</option>
+              </select>
+            </div>
+            <div class="input bed-num">
+              <label for="numBeds">Number of Beds: </label>
+              <input type="number" class="num-beds" id="numBeds" name="beds" min="1" max="2"/>
+            </div>
+          <fieldset>
+            <legend for="Bidet">Bidet?</legend>
+            <div class="input">
+              <input type="radio" id="yes" name="Bidet" value="Yes" checked />
+              <label for="yes">Yes</label>
+            </div>
+            <div class="input">
+              <input type="radio" id="no" name="Bidet" value="No"/>
+              <label for="no">No</label>
+            </div>
+            <div class="input">
+              <input type="radio" id="doesntMatter" name="Bidet"
+                value="Doesnt matter"/>
+              <label for="doesntMatter">Doesn't Matter</label>
+            </div>
+          </fieldset>
         </div>
         <h3 class="stay">For Ever, and Ever, and Ever...</h3>
       </section>

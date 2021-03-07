@@ -17,7 +17,7 @@ const userSpending = document.querySelector('#userSpending');
 const bookingForm = document.querySelector('#bookingForm');
 const bookRoom = document.querySelector('#bookRoom');
 
-bookRoom.addEventListener('click', showBookingForm)
+bookRoom.addEventListener('click', bookingButtonPress)
 
 Promise.all(apiData)
   .then(responses => Promise.all(responses.map(response => response.json())))
@@ -62,7 +62,18 @@ function updateTotalSpent() {
   userSpending.innerText += customer.totalSpent;
 }
 
+function bookingButtonPress() {
+  if (bookRoom.innerHTML === 'Book your next visit') {
+    showBookingForm()
+  } else {
+    
+  }
+}
+
 function showBookingForm() {
-  guestBookings.classList.toggle('hidden');
   bookingForm.classList.toggle('hidden');
+  bookRoom.innerHTML = 'Confirm My Visit';
+  if(screen.width < 1000) {
+    guestBookings.classList.toggle('hidden');
+  }
 }

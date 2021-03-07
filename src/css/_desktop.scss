@@ -8,8 +8,8 @@
   }
 
   main {
-    padding-top: 0;
-    padding-bottom: 0;
+    padding-top: 5%;
+    padding-bottom: 3%;
   }
 
   footer {
@@ -59,7 +59,7 @@
   }
 
   .booking {
-    width: 50%;
+    width: 45%;
     font-size: 25px;
     margin: 2%;
     padding-left: 10px;
@@ -78,6 +78,26 @@
     width: 40%;
     background-color: $pink;
     border: 7px solid $red;
+  }
+
+  .stay{
+    font-size: 25px;
+    align-self: center;
+  }
+
+  .input > * {
+    font-size: 20px
+  }
+
+  fieldset {
+    legend {
+      font-size: 20px;
+    }
+  }
+
+  input[type=radio] + label:before {
+    height: 15px;
+    width: 15px;
   }
 
   .spending {
