@@ -6,6 +6,14 @@ $green: #4FB87B;
 
 $font: 'Sawarabi Mincho', sans-serif;
 
-// @mixin font(aColor) {
-//   color: aColor;
-// }
+@mixin hexFont($fontsize){
+  color: $pink;
+  font-size: $fontsize;
+  text-shadow:
+  0 0 5px black,
+  1px 0 20px $pink;
+}
+
+.accent {
+  color: $green;
+}

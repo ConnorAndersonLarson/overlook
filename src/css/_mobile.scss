@@ -6,11 +6,34 @@ html{
   font-family: $font;
 }
 
+body {
+  background: $brown;
+  height: 100%;
+}
+
 header {
   position: fixed;
   top: 0px;
   width: 100%;
   height: 26%;
+}
+
+main {
+  padding-top: 30%;
+  padding-bottom: 26%;
+}
+
+footer {
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  margin: 0;
+  height:16%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  color: $pink;
+  background: center / cover url("../images/hotel-pattern.jpg");
 }
 
 .title{
@@ -25,39 +48,76 @@ header {
   width: 100%;
   justify-items: center;
   background-color: $brown;
-
-
+  background: center / cover url("../images/hotel-pattern.jpg");
 }
 
 .overlook{
   align-self: center;
-  font-size: 50px;
+  @include hexFont(55px);
   grid-area: overlook;
   margin:0;
-  color: $pink;
-  text-shadow:
-  0 0 5px black,
-  1px 0 20px $pink;
 }
 
 .welcome{
   grid-area: welcome;
-  font-size: 40px;
   justify-self: flex-start;
-  color: $pink;
-  margin-left: 10%;
-  text-shadow:
-  0 0 5px black,
-  1px 0 20px $pink;
+  margin-left: 9%;
+  @include hexFont(45px);
 }
 
 .hotel{
   grid-area: hotel;
-  font-size: 40px;
   justify-self: flex-end;
-  color: $pink;
+  align-self: flex-end;
   margin-right: 10%;
-  text-shadow:
-  0 0 5px black,
-  1px 0 20px $pink;
+  @include hexFont(45px);
+}
+
+.greeting {
+  text-align: center;
+  font-size: 40px;
+  color: $pink;
+  background-color: $brown;
+  margin: 0;
+  padding: 20px 0px 20px 0px
+}
+
+
+.bookings {
+  display:flex;
+  flex-direction: column;
+  margin: 5%;
+}
+
+.booking {
+  font-size: 25px;
+  margin: 5%;
+  padding-left: 10px;
+  color: $pink;
+}
+
+.spending {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 50%;
+}
+
+.total-spending {
+  font-size: 45px;
+  height: 100%;
+  @include hexFont(40px);
+}
+.user-spending {
+  height: 100%;
+  @include hexFont(55px);
+}
+
+.book-a-room {
+  width: 30%;
+  height: 20%;
+  border-radius: 10px;
+  font-size: 25px;
+  border: 5px solid $red;
+  background-color: $pink;
 }

@@ -12,7 +12,7 @@ let hotel;
 let customer;
 const guestName = document.querySelector('#guestName');
 const guestBookings = document.querySelector('#guestBookings');
-
+const userSpending = document.querySelector('#userSpending');
 Promise.all(apiData)
   .then(responses => Promise.all(responses.map(response => response.json())))
   .then(data => {
@@ -35,6 +35,7 @@ function createCustomer(customerInfo) {
   customer.findTotal(allRooms);
   updateGuestName()
   updateBookings()
+  updateTotalSpent()
 }
 
 function updateGuestName() {
@@ -49,4 +50,8 @@ function updateBookings() {
       <h3>Room Number:<span class="accent">${booking.roomNumber}</span></h3>
     </section>`
   })
+}
+
+function updateTotalSpent() {
+  userSpending.innerText += customer.totalSpent;
 }

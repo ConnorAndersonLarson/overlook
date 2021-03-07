@@ -1,0 +1,94 @@
+@media screen and (min-width: 1000px) {
+
+  header {
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    height: 15%;
+  }
+
+  main {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  footer {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    margin: 0;
+    height:11%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    color: $pink;
+    background: center / cover url("../images/hotel-pattern.jpg")
+  }
+
+  .title{
+    box-sizing: border-box;
+    display: grid;
+    grid-template:
+      "welcome overlook hotel guest" 100%
+      /33% 34% 33%;
+    height: 60%;
+    width: 100%;
+    justify-items: center;
+    background-color: $brown;
+  }
+
+  .welcome, .overlook, .hotel {
+    align-self: center;
+    @include hexFont(45px);
+  }
+
+  .greeting {
+    text-align: end;
+    font-size: 25px;
+    color: $pink;
+    background-color: $brown;
+    margin: 0;
+    padding: 10px 30px 10px 0px
+  }
+
+
+  .bookings {
+    display:flex;
+    flex-direction: column;
+    margin: 5%;
+  }
+
+  .booking {
+    font-size: 25px;
+    margin: 5%;
+    padding-left: 10px;
+    color: $pink;
+  }
+
+  .spending {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-left: 90px;
+    width: 50%;
+  }
+
+  .total-spending {
+    //height: 100%;
+    @include hexFont(25px);
+  }
+  .user-spending {
+    height: 100%;
+    @include hexFont(40px);
+  }
+
+  .book-a-room {
+    width: 30%;
+    height: 50%;
+    border-radius: 10px;
+    font-size: 25px;
+    border: 5px solid $red;
+    background-color: $pink;
+  }
+
+}
