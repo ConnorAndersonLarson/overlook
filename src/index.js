@@ -16,8 +16,10 @@ const guestBookings = document.querySelector('#guestBookings');
 const userSpending = document.querySelector('#userSpending');
 const bookingForm = document.querySelector('#bookingForm');
 const bookRoom = document.querySelector('#bookRoom');
+const bookDate = document.querySelector('#bookDate');
 
 bookRoom.addEventListener('click', bookingButtonPress)
+bookDate.addEventListener('blur', findAvailableRooms)
 
 Promise.all(apiData)
   .then(responses => Promise.all(responses.map(response => response.json())))
@@ -66,7 +68,7 @@ function bookingButtonPress() {
   if (bookRoom.innerHTML === 'Book your next visit') {
     showBookingForm()
   } else {
-    
+    makeBooking()
   }
 }
 
@@ -76,4 +78,9 @@ function showBookingForm() {
   if(screen.width < 1000) {
     guestBookings.classList.toggle('hidden');
   }
+}
+
+function findAvailableRooms() {
+  let date = event.target.value.split('-').join('/')
+  hotel.findOpenRooms(date)
 }

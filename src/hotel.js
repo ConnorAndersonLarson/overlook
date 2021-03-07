@@ -21,17 +21,18 @@ class Hotel {
   }
 
   findOpenRooms(searchDate) {
-    let bookedRooms = this.bookings.bookings.filter(booking => booking.date === searchDate)
-    let openRooms = this.rooms.rooms.reduce((openRooms, room) => {
-      bookedRooms.forEach(bookedRoom => {
-        if(bookedRoom.roomNumber !== room.number) {
+    let bookedRooms = this.bookings.filter(booking => booking.date === searchDate)
+    let roomNums = bookedRooms.map(room => room.roomNumber)
+    let theseRooms;
+      theseRooms = this.rooms.reduce((openRooms, room) => {
+        if(!roomNums.includes(room.number)){
           openRooms.push(room)
+        return openRooms
         }
-      })
-      return openRooms
-    }, [])
-    this.availableRooms = openRooms;
-    return openRooms
+        return openRooms
+      }, [])
+    this.availableRooms = theseRooms;
+    return theseRooms
   }
 
   filterRooms(filterData) {
@@ -39,6 +40,7 @@ class Hotel {
       room.roomType === filterData.roomType &&
       (room.bidet === filterData.bidet || filterData.bidet === 'maybe') &&
       room.numBeds === filterData.numBeds);
+      console.log(filteredRooms)
     return filteredRooms;
   }
 
