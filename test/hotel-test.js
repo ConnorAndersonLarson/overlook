@@ -4,31 +4,34 @@ const expect = chai.expect;
 
 describe('Hotel', function() {
   let testRooms, testBookings, testCustomers, testHotel;
-
+  let room1, room2, room3, room4;
   beforeEach(() => {
-    testRooms = {"rooms":[
-      {
+    testRooms = {"rooms":[room1, room2, room3, room4]}
+      room1 = {
         "number":1,
         "roomType":"residential suite",
         "bidet":true,
         "bedSize":"queen",
         "numBeds":1,
         "costPerNight":358.4
-      },{
+      }
+      room2 = {
         "number":2,
         "roomType":"suite",
         "bidet":false,
         "bedSize":"full",
         "numBeds":2,
         "costPerNight":477.38
-      },{
+      }
+      room3 = {
         "number":3,
         "roomType":"single room",
         "bidet":false,
-        "bedSize":"king",
+        "bedSize":"queen",
         "numBeds":1,
         "costPerNight":491.14
-      },{
+      }
+      room4 = {
         "number":4,
         "roomType":"single room",
         "bidet":false,
@@ -36,7 +39,7 @@ describe('Hotel', function() {
         "numBeds":1,
         "costPerNight":429.44
       }
-    ]};
+
     testBookings = {"bookings":[
       {
         "id":"5fwrgu4i7k55hl6sz",
@@ -112,5 +115,13 @@ describe('Hotel', function() {
     it('should return an error upon an unsuccessful booking', function() {
       expect(testHotel.createNewBooking(2, "2020/01/10", 1, testBookings.bookings)).to.equal('Oops, that room is unavailable.')
     });
+    it('should create a list of available rooms on a given day', function() {
+      expect(testHotel.findOpenRooms("2020/01/10")).to.deep.equal([room2, room3, room4])
+    });
+    it('should be able to filter through available rooms', function() {
+      let roomFilter = {'roomType':'suite' ,'bidet':false ,'numBeds':2}
+      testHotel.findOpenRooms("2020/01/10")
+      expect(testHotel.filterRooms(roomFilter)).to.deep.equal([room2])
+    })
   });
 });

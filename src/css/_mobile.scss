@@ -104,19 +104,85 @@ footer {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  height: 60%;
-  width: 95%;
+  height: 55%;
+  width: 90%;
   background-color: $pink;
   border: 7px solid $red;
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   align-items: flex-start;
   justify-content: space-around;
+  padding: 20px;
 }
 
 .stay{
-  font-size: 25px;
+  font-size: 55px;
   align-self: center;
+  width: 100%;
+  text-align: center;
+}
+
+.input > * {
+  font-size: 40px
+}
+
+.date {
+  width: 100%;
+  align-self: center;
+  text-align: center;
+}
+
+.room-features {
+  grid-template:
+    "roomType bidet" 1fr
+    "numberBeds bidet" 1fr
+    /50% 50%;
+  width: 100%;
+  display:grid;
+  justify-content: space-around;
+}
+
+.room-type {
+  grid-area: roomType;
+}
+
+.bed-num {
+  grid-area: numberBeds;
+}
+
+fieldset {
+  legend {
+    font-size: 40px;
+  }
+  grid-area: bidet;
+  height: 100%;
+  border-color: $red;
+  border-style: solid;
+  padding: 5.6px 12px 5.6px 12px;
+}
+
+input[type=radio] {
+  visibility: hidden;
+  position: absolute;
+}
+
+input[type=radio] + label:before {
+  height: 22px;
+  width: 22px;
+  margin: 3px 10px 3px 10px;
+  content: " ";
+  display: inline-block;
+  vertical-align: baseline;
+  border: 5px solid $red;
+}
+
+input[type=radio]:checked + label:before {
+  background: $green;
+}
+
+.num-beds {
+  width: 20%;
+  border: $orange;
 }
 
 .spending {
@@ -140,7 +206,7 @@ footer {
   width: 35%;
   height: 25%;
   border-radius: 10px;
-  font-size: 25px;
+  font-size: 30px;
   border: 5px solid $red;
   background-color: $pink;
 }
