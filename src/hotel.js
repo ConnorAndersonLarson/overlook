@@ -14,7 +14,7 @@ class Hotel {
   createNewBooking(userID, date, room, endLocation) {
     let booked = false;
     let data = {"userID": userID, "date": date, "roomNumber": room }
-    booked = this.bookings.bookings.find(booking => booking.date === date && booking.roomNumber === room)
+    booked = this.bookings.find(booking => booking.date === date && booking.roomNumber === room)
       if (!booked) {
       endLocation.push(data);
       return 'Your booking has been confirmed.';
@@ -47,6 +47,8 @@ class Hotel {
       room.numBeds == filterData.numBeds);
     this.filteredRooms = filteredRooms;
     this.transformFilterData()
+    console.log(this.bookingData)
+    return this.bookingData
   }
 
   transformFilterData() {

@@ -6,7 +6,7 @@ describe('Hotel', function() {
   let testRooms, testBookings, testCustomers, testHotel;
   let room1, room2, room3, room4;
   beforeEach(() => {
-    testRooms = {"rooms":[room1, room2, room3, room4]}
+    testRooms = [room1, room2, room3, room4]
       room1 = {
         "number":1,
         "roomType":"residential suite",
@@ -40,7 +40,7 @@ describe('Hotel', function() {
         "costPerNight":429.44
       }
 
-    testBookings = {"bookings":[
+    testBookings = [
       {
         "id":"5fwrgu4i7k55hl6sz",
         "userID":9,
@@ -60,7 +60,7 @@ describe('Hotel', function() {
         "roomNumber":1,
         "roomServiceCharges":[]
       }
-    ]};
+    ];
     testCustomers = {"customers":[
       {
         "id":1,
@@ -104,16 +104,16 @@ describe('Hotel', function() {
   describe('Methods', function() {
 
     it('should be able to create a new booking', function() {
-      testHotel.createNewBooking(1, "2020/01/10", 4, testBookings.bookings)
-      expect(testBookings.bookings[3].userID).to.equal(1)
-      expect(testBookings.bookings[3].date).to.equal("2020/01/10")
-      expect(testBookings.bookings[3].roomNumber).to.equal(4)
+      testHotel.createNewBooking(1, "2020/01/10", 4, testBookings)
+      expect(testBookings[3].userID).to.equal(1)
+      expect(testBookings[3].date).to.equal("2020/01/10")
+      expect(testBookings[3].roomNumber).to.equal(4)
     });
     it('should return an affirmative upon a successful booking', function() {
-      expect(testHotel.createNewBooking(1, "2020/01/10", 4, testBookings.bookings)).to.equal('Your booking has been confirmed.')
+      expect(testHotel.createNewBooking(1, "2020/01/10", 4, testBookings)).to.equal('Your booking has been confirmed.')
     });
     it('should return an error upon an unsuccessful booking', function() {
-      expect(testHotel.createNewBooking(2, "2020/01/10", 1, testBookings.bookings)).to.equal('Oops, that room is unavailable.')
+      expect(testHotel.createNewBooking(2, "2020/01/10", 1, testBookings)).to.equal('Oops, that room is unavailable.')
     });
     it('should create a list of available rooms on a given day', function() {
       expect(testHotel.findOpenRooms("2020/01/10")).to.deep.equal([room2, room3, room4])
@@ -121,7 +121,7 @@ describe('Hotel', function() {
     it('should be able to filter through available rooms', function() {
       let roomFilter = {'roomType':'suite' ,'bidet':false ,'numBeds':2}
       testHotel.findOpenRooms("2020/01/10")
-      expect(testHotel.filterRooms(roomFilter)).to.deep.equal([room2])
+      expect(testHotel.filterRooms(roomFilter)).to.deep.equal([["2020/01/10",room2]])
     })
   });
 });

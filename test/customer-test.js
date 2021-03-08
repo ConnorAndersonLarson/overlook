@@ -98,11 +98,11 @@ let booking1, booking2, booking3;
       expect(testCustomer.name).to.equal('Leatha Ullrich');
     });
     it('should have a list of all their bookings', function() {
-      testCustomer.findBookings(testBookings.bookings);
+      testCustomer.findBookings(testBookings.bookings, testRooms.rooms);
       expect(testCustomer.myBookings).to.deep.equal([booking2, booking3])
     });
     it('should have a total amount spent on rooms', function() {
-      testCustomer.findBookings(testBookings.bookings);
+      testCustomer.findBookings(testBookings.bookings, testRooms.rooms);
       testCustomer.findTotal(testRooms.rooms);
       expect(testCustomer.totalSpent).to.equal("787.84")
     });
