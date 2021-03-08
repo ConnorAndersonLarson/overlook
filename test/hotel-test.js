@@ -99,6 +99,18 @@ describe('Hotel', function() {
     it('should contain all customers', function() {
       expect(testHotel.customers).to.deep.equal(testCustomers);
     });
+    it('should be able to store the date being searched', function() {
+      expect(testHotel.searchDate).to.equal('');
+    });
+    it('should be able to store available rooms', function() {
+      expect(testHotel.availableRooms).to.deep.equal([]);
+    });
+    it('should be able to store available rooms that have been filtered', function() {
+      expect(testHotel.filteredRooms).to.deep.equal([]);
+    });
+    it('should be able to store filtered room data and the date being looked for', function() {
+      expect(testHotel.bookingData).to.deep.equal([]);
+    });
   });
 
   describe('Methods', function() {
@@ -121,7 +133,8 @@ describe('Hotel', function() {
     it('should be able to filter through available rooms', function() {
       let roomFilter = {'roomType':'suite' ,'bidet':false ,'numBeds':2}
       testHotel.findOpenRooms("2020/01/10")
-      expect(testHotel.filterRooms(roomFilter)).to.deep.equal([["2020/01/10",room2]])
+      testHotel.filterRooms(roomFilter)
+      expect(testHotel.bookingData).to.deep.equal([["2020/01/10",room2]])
     })
   });
 });

@@ -9,8 +9,6 @@ class Hotel {
     this.bookingData = []
   }
 
-  // findCustomer(id) {}
-
   createNewBooking(userID, date, room, endLocation) {
     let booked = false;
     let data = {"userID": userID, "date": date, "roomNumber": room }
@@ -47,8 +45,6 @@ class Hotel {
       room.numBeds == filterData.numBeds);
     this.filteredRooms = filteredRooms;
     this.transformFilterData()
-    console.log(this.bookingData)
-    return this.bookingData
   }
 
   transformFilterData() {

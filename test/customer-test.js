@@ -101,6 +101,9 @@ let booking1, booking2, booking3;
       testCustomer.findBookings(testBookings.bookings, testRooms.rooms);
       expect(testCustomer.myBookings).to.deep.equal([booking2, booking3])
     });
+    it('should have a list of rooms booked with dates', function() {
+      expect(testCustomer.bookedData).to.deep.equal([]);
+    })
     it('should have a total amount spent on rooms', function() {
       testCustomer.findBookings(testBookings.bookings, testRooms.rooms);
       testCustomer.findTotal(testRooms.rooms);
