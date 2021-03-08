@@ -10,6 +10,7 @@ const apiData = [
 let allRooms, allBookings, allCustomers;
 let hotel;
 let customer;
+let todayDate = "2020/07/04"
 
 const guestName = document.querySelector('#guestName');
 const guestBookings = document.querySelector('#guestBookings');
@@ -43,9 +44,19 @@ function createCustomer(customerInfo) {
   customer = new Customer(allCustomers[0]);
   customer.findBookings(allBookings, allRooms);
   customer.findTotal(allRooms);
+  updateDOM()
+}
+
+function updateDOM() {
+  updateDate()
   updateGuestName()
   updateBookings(customer.bookedData)
   updateTotalSpent()
+}
+
+function updateDate() {
+  bookDate.min = todayDate;
+  bookDate.value = todayDate.split('/').join('-');
 }
 
 function updateGuestName() {
@@ -58,7 +69,7 @@ function updateBookings(data) {
   } else {
     guestBookings.innerHTML = '';
     data.forEach(booking => {
-      guestBookings.innerHTML+= `
+      guestBookings.innerHTML += `
       <section class="booking">
         <h3>${booking[0]}</h3>
         <h3>Room Number: <span class="accent">${booking[1].number}</span></h3>
@@ -72,7 +83,6 @@ function updateBookings(data) {
 }
 
 function apologize() {
-  guestBookings.innerHTML = '';
   guestBookings.innerHTML = `
     <section class="booking">
       <h3>We are extremely sorry, <span class="accent">${customer.name}</span></h3>
@@ -96,9 +106,13 @@ function bookingButtonPress() {
 function showBookingForm() {
   bookingForm.classList.toggle('hidden');
   bookRoom.innerHTML = 'Confirm My Visit';
-  if(screen.width < 1000) {
+  if (screen.width < 1000) {
     guestBookings.classList.toggle('hidden');
   }
+}
+
+function makeBooking() {
+
 }
 
 function findAvailableRooms() {
@@ -110,7 +124,7 @@ function filterThroughRooms() {
   let roomType = document.querySelector('#roomType').value
   let bidet = document.querySelector('input[name="Bidet"]:checked').value;
   let numBeds = document.querySelector('#numBeds').value
-  let data = {'roomType': roomType,'bidet': bidet,'numBeds': numBeds}
+  let data = {roomType, bidet, numBeds}
   hotel.filterRooms(data)
   updateBookings(hotel.bookingData)
 }

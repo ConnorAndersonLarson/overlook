@@ -21,18 +21,23 @@ class Customer {
   findTotal(roomData) {
     this.myBookings.forEach(booking => {
       roomData.forEach(room => {
-        if(room.number === booking.roomNumber) {
-          this.totalSpent+=room.costPerNight
+        if (room.number === booking.roomNumber) {
+          this.totalSpent += room.costPerNight
         }
       })
     })
     this.totalSpent = this.totalSpent.toFixed(2)
-  };
+  }
 
   createNewBooking(date, room, endLocation) {
     let booked = false;
-    let data = {"userID": this.userID, "date": date, "roomNumber": room, "roomServiceCharges": []}
-    booked = endLocation.find(booking => booking.date === date && booking.roomNumber === room)
+    let data = {
+      "userID": this.userID,
+      "date": date,
+      "roomNumber": room,
+      "roomServiceCharges": []}
+    booked = endLocation.find(booking => booking.date === date &&
+      booking.roomNumber === room)
     if (!booked) {
       endLocation.push(data);
       return 'Your booking has been confirmed.';
@@ -43,6 +48,6 @@ class Customer {
     }
   }
 
-};
+}
 
 module.exports = Customer;
