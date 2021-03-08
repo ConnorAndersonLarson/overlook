@@ -53,18 +53,32 @@ function updateGuestName() {
 }
 
 function updateBookings(data) {
+  if (!data[0]) {
+    apologize()
+  } else {
+    guestBookings.innerHTML = '';
+    data.forEach(booking => {
+      guestBookings.innerHTML+= `
+      <section class="booking">
+        <h3>${booking[0]}</h3>
+        <h3>Room Number: <span class="accent">${booking[1].number}</span></h3>
+        <h3>Room Type: <span class="accent">${booking[1].roomType}</span></h3>
+        <h3>Amount of Beds: <span class="accent">${booking[1].numBeds}</span></h3>
+        <h3>Bidet: <span class="accent">${booking[1].bidet}</span></h3>
+        <h3>Nightly Cost: <span class="accent">${booking[1].costPerNight}</span></h3>
+      </section>`
+    })
+  }
+}
+
+function apologize() {
   guestBookings.innerHTML = '';
-  data.forEach(booking => {
-    guestBookings.innerHTML+= `
+  guestBookings.innerHTML = `
     <section class="booking">
-      <h3>${booking[0]}</h3>
-      <h3>Room Number: <span class="accent">${booking[1].number}</span></h3>
-      <h3>Room Type: <span class="accent">${booking[1].roomType}</span></h3>
-      <h3>Amount of Beds: <span class="accent">${booking[1].numBeds}</span></h3>
-      <h3>Bidet? <span class="accent">${booking[1].bidet}</span></h3>
-      <h3>Nightly Cost: <span class="accent">${booking[1].costPerNight}</span></h3>
+      <h3>We are extremely sorry, <span class="accent">${customer.name}</span></h3>
+      <h3>We cannot find any available rooms</h3>
+      <h3>Please try a different date or amenities.</h3>
     </section>`
-  })
 }
 
 function updateTotalSpent() {
