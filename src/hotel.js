@@ -30,7 +30,7 @@ class Hotel {
     let theseRooms;
     theseRooms = this.rooms.reduce((openRooms, room) => {
       if (!roomNums.includes(room.number)) {
-        openRooms.push(room)
+        openRooms.push([searchDate, room])
         return openRooms
       }
       return openRooms
@@ -42,19 +42,11 @@ class Hotel {
   filterRooms(filterData) {
     this.findOpenRooms(this.searchDate)
     let filteredRooms = this.availableRooms.filter(room =>
-      room.roomType === filterData.roomType &&
-      (room.bidet === (filterData.bidet === 'true') ||
+      room[1].roomType === filterData.roomType &&
+      (room[1].bidet === (filterData.bidet === 'true') ||
       filterData.bidet === 'maybe') &&
-      room.numBeds == filterData.numBeds);
+      room[1].numBeds == filterData.numBeds);
     this.filteredRooms = filteredRooms;
-    this.transformFilterData()
-  }
-
-  transformFilterData() {
-    let bookedRooms = this.filteredRooms.map(data => {
-      return [this.searchDate, data]
-    })
-    this.bookingData = bookedRooms
   }
 
 }

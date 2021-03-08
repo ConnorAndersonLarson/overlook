@@ -42,15 +42,25 @@
     @include hexFont(45px);
   }
 
+  .sub-header {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
   .greeting {
     text-align: end;
     font-size: 25px;
     color: $pink;
     background-color: $brown;
     margin: 0;
-    padding: 10px 30px 10px 0px
+    padding: 10px 30px 10px 0px;
+    width: 50%
   }
 
+  .room-column {
+    text-align: left;
+    padding-left: 6%; 
+  }
 
   .bookings {
     display:flex;

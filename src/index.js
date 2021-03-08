@@ -33,8 +33,6 @@ Promise.all(apiData)
     createHotel(allRooms, allBookings, allCustomers)
   })
 
-//document.querySelector('.overlook').addEventListener('click', test)
-
 function createHotel(rooms, bookings, customers) {
   hotel = new Hotel(rooms, bookings, customers)
   createCustomer(0);
@@ -70,14 +68,14 @@ function updateBookings(data) {
     guestBookings.innerHTML = '';
     data.forEach(booking => {
       guestBookings.innerHTML += `
-      <section class="booking">
+      <button type=button class="booking">
         <h3>${booking[0]}</h3>
         <h3>Room Number: <span class="accent">${booking[1].number}</span></h3>
         <h3>Room Type: <span class="accent">${booking[1].roomType}</span></h3>
         <h3>Amount of Beds: <span class="accent">${booking[1].numBeds}</span></h3>
         <h3>Bidet: <span class="accent">${booking[1].bidet}</span></h3>
         <h3>Nightly Cost: <span class="accent">${booking[1].costPerNight}</span></h3>
-      </section>`
+      </button>`
     })
   }
 }
@@ -117,7 +115,9 @@ function makeBooking() {
 
 function findAvailableRooms() {
   let date = event.target.value.split('-').join('/')
+  document.querySelector('#roomColumnHeader').innerText = "Available Rooms:"
   hotel.findOpenRooms(date)
+  updateBookings(hotel.availableRooms)
 }
 
 function filterThroughRooms() {
@@ -126,5 +126,5 @@ function filterThroughRooms() {
   let numBeds = document.querySelector('#numBeds').value
   let data = {roomType, bidet, numBeds}
   hotel.filterRooms(data)
-  updateBookings(hotel.bookingData)
+  updateBookings(hotel.filteredRooms)
 }
