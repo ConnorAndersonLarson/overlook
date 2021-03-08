@@ -17,9 +17,11 @@ const userSpending = document.querySelector('#userSpending');
 const bookingForm = document.querySelector('#bookingForm');
 const bookRoom = document.querySelector('#bookRoom');
 const bookDate = document.querySelector('#bookDate');
+const filterRooms = document.querySelector('#filterRooms');
 
-bookRoom.addEventListener('click', bookingButtonPress)
-bookDate.addEventListener('blur', findAvailableRooms)
+bookRoom.addEventListener('click', bookingButtonPress);
+bookDate.addEventListener('blur', findAvailableRooms);
+filterRooms.addEventListener('click', filterThroughRooms);
 
 Promise.all(apiData)
   .then(responses => Promise.all(responses.map(response => response.json())))
@@ -39,10 +41,10 @@ function createHotel(rooms, bookings, customers) {
 
 function createCustomer(customerInfo) {
   customer = new Customer(allCustomers[0]);
-  customer.findBookings(allBookings);
+  customer.findBookings(allBookings, allRooms);
   customer.findTotal(allRooms);
   updateGuestName()
-  updateBookings()
+  updateBookings(customer.bookedData)
   updateTotalSpent()
 }
 
@@ -50,12 +52,17 @@ function updateGuestName() {
   guestName.innerText = customer.name
 }
 
-function updateBookings() {
-  customer.myBookings.forEach(booking => {
+function updateBookings(data) {
+  guestBookings.innerHTML = '';
+  data.forEach(booking => {
     guestBookings.innerHTML+= `
     <section class="booking">
-      <h3>Booked For: <span class="accent">${booking.date}</span></h3>
-      <h3>Room Number: <span class="accent">${booking.roomNumber}</span></h3>
+      <h3>${booking[0]}</h3>
+      <h3>Room Number: <span class="accent">${booking[1].number}</span></h3>
+      <h3>Room Type: <span class="accent">${booking[1].roomType}</span></h3>
+      <h3>Amount of Beds: <span class="accent">${booking[1].numBeds}</span></h3>
+      <h3>Bidet? <span class="accent">${booking[1].bidet}</span></h3>
+      <h3>Nightly Cost: <span class="accent">${booking[1].costPerNight}</span></h3>
     </section>`
   })
 }
@@ -83,4 +90,13 @@ function showBookingForm() {
 function findAvailableRooms() {
   let date = event.target.value.split('-').join('/')
   hotel.findOpenRooms(date)
+}
+
+function filterThroughRooms() {
+  let roomType = document.querySelector('#roomType').value
+  let bidet = document.querySelector('input[name="Bidet"]:checked').value;
+  let numBeds = document.querySelector('#numBeds').value
+  let data = {'roomType': roomType,'bidet': bidet,'numBeds': numBeds}
+  hotel.filterRooms(data)
+  updateBookings(hotel.bookingData)
 }

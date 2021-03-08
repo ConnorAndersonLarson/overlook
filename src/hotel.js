@@ -3,7 +3,10 @@ class Hotel {
     this.rooms=rooms;
     this.bookings=bookings;
     this.customers=customers;
-    this.availableRooms = []
+    this.searchDate = '';
+    this.availableRooms = [];
+    this.filteredRooms = [];
+    this.bookingData = []
   }
 
   // findCustomer(id) {}
@@ -21,6 +24,7 @@ class Hotel {
   }
 
   findOpenRooms(searchDate) {
+    this.searchDate = searchDate;
     let bookedRooms = this.bookings.filter(booking => booking.date === searchDate)
     let roomNums = bookedRooms.map(room => room.roomNumber)
     let theseRooms;
@@ -36,12 +40,20 @@ class Hotel {
   }
 
   filterRooms(filterData) {
+    this.findOpenRooms(this.searchDate)
     let filteredRooms = this.availableRooms.filter(room =>
       room.roomType === filterData.roomType &&
-      (room.bidet === filterData.bidet || filterData.bidet === 'maybe') &&
-      room.numBeds === filterData.numBeds);
-      console.log(filteredRooms)
-    return filteredRooms;
+      (room.bidet === (filterData.bidet === 'true') || filterData.bidet === 'maybe') &&
+      room.numBeds == filterData.numBeds);
+    this.filteredRooms = filteredRooms;
+    this.transformFilterData()
+  }
+
+  transformFilterData() {
+    let bookedRooms = this.filteredRooms.map(data => {
+      return [this.searchDate, data]
+    })
+    this.bookingData = bookedRooms
   }
 
 }

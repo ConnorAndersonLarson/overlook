@@ -3,11 +3,18 @@ class Customer {
     this.userID = custInfo.id;
     this.name = custInfo.name;
     this.myBookings = [];
+    this.bookedData = [];
     this.totalSpent = 0;
   }
 
-  findBookings(bookingData) {
+  findBookings(bookingData, roomData) {
     let myData = bookingData.filter(booking => booking.userID === this.userID)
+    let bookedRooms = myData.map(data => {
+      let thisRoomData = roomData.find(room => room.number === data.roomNumber)
+      let bookedData = [data.date, thisRoomData]
+      return bookedData
+    })
+    this.bookedData = bookedRooms;
     this.myBookings = myData;
   }
 
