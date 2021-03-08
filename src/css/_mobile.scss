@@ -107,6 +107,14 @@ footer {
   border-radius: 10px;
 }
 
+.book-button {
+  width: 75%;
+}
+
+.book-button:focus {
+  border-color: $green;
+}
+
 .booking-form {
   position: fixed;
   top: 50%;

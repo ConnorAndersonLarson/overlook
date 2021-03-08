@@ -19,10 +19,12 @@ const bookingForm = document.querySelector('#bookingForm');
 const bookRoom = document.querySelector('#bookRoom');
 const bookDate = document.querySelector('#bookDate');
 const filterRooms = document.querySelector('#filterRooms');
+let bookButtons;
 
 bookRoom.addEventListener('click', bookingButtonPress);
 bookDate.addEventListener('blur', findAvailableRooms);
 filterRooms.addEventListener('click', filterThroughRooms);
+let buttonsListener;
 
 Promise.all(apiData)
   .then(responses => Promise.all(responses.map(response => response.json())))
@@ -68,14 +70,15 @@ function updateBookings(data) {
     guestBookings.innerHTML = '';
     data.forEach(booking => {
       guestBookings.innerHTML += `
-      <button type=button class="booking">
+      <section class="booking">
         <h3>${booking[0]}</h3>
         <h3>Room Number: <span class="accent">${booking[1].number}</span></h3>
         <h3>Room Type: <span class="accent">${booking[1].roomType}</span></h3>
         <h3>Amount of Beds: <span class="accent">${booking[1].numBeds}</span></h3>
         <h3>Bidet: <span class="accent">${booking[1].bidet}</span></h3>
         <h3>Nightly Cost: <span class="accent">${booking[1].costPerNight}</span></h3>
-      </button>`
+        <button type=button class="booking book-button hidden" id="${booking[1].number}">Choose This Room!</button>
+      </section>`
     })
   }
 }
@@ -118,6 +121,7 @@ function findAvailableRooms() {
   document.querySelector('#roomColumnHeader').innerText = "Available Rooms:"
   hotel.findOpenRooms(date)
   updateBookings(hotel.availableRooms)
+  toggleButtons()
 }
 
 function filterThroughRooms() {
@@ -127,4 +131,19 @@ function filterThroughRooms() {
   let data = {roomType, bidet, numBeds}
   hotel.filterRooms(data)
   updateBookings(hotel.filteredRooms)
+  toggleButtons()
+}
+
+function toggleButtons() {
+  let allBookings = document.querySelectorAll('.book-button')
+  allBookings.forEach(booking => {
+    booking.classList.remove('hidden')
+  })
+  bookButtons = document.querySelectorAll('.book-button');
+  buttonsListener = bookButtons.forEach(button=> button.addEventListener('click', selectRoom));
+}
+
+function selectRoom() {
+  hotel.chooseRoom(event.target.id)
+  console.log(event.target.id)
 }

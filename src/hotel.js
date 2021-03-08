@@ -6,7 +6,8 @@ class Hotel {
     this.searchDate = '';
     this.availableRooms = [];
     this.filteredRooms = [];
-    this.bookingData = []
+    this.bookingData = [];
+    this.selectedRoom = [];
   }
 
   createNewBooking(userID, date, room, endLocation) {
@@ -47,6 +48,12 @@ class Hotel {
       filterData.bidet === 'maybe') &&
       room[1].numBeds == filterData.numBeds);
     this.filteredRooms = filteredRooms;
+  }
+
+  chooseRoom(roomNumber) {
+    console.log(this.availableRooms)
+    this.selectedRoom = this.availableRooms.find(room => room[1].number == roomNumber)
+    console.log(this.selectedRoom)
   }
 
 }
