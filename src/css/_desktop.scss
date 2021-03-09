@@ -22,7 +22,10 @@
     align-items: center;
     justify-content: space-around;
     color: $pink;
-    background: center / cover url("../images/hotel-pattern.jpg")
+    background: center / cover url("../images/hotel-pattern.jpg");
+    .book-a-room {
+      height: 75%;
+    }
   }
 
   .title{
@@ -52,6 +55,10 @@
 
   .log-in {
     height: 35%;
+    top: 50%;
+    .book-a-room {
+      font-size: 3vw;
+    }
   }
 
   .photo {
@@ -150,9 +157,21 @@
     width: 30%;
     height: 50%;
     border-radius: 10px;
-    font-size: 25px;
+    font-size: 3vw;
     border: 5px solid $red;
     background-color: $pink;
+  }
+
+  .book-button {
+    width: 60%;
+  }
+
+  .confirmation {
+    .greeting {
+      width: 95%;
+      text-align: center;
+      padding: 10px;
+    }
   }
 
 }

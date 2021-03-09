@@ -101,7 +101,7 @@ function updateDOM() {
 }
 
 function screenCheck() {
-  if (screen.width > 750) {
+  if (screen.width > 1024) {
     photoSection.classList.remove('hidden');
   }
 }
