@@ -113,20 +113,20 @@ describe('Customer', function() {
 
   describe('Methods', function() {
     it('should be able to create a new booking', function() {
-      testCustomer.createNewBooking("2020/01/10", 4, testBookings.bookings)
+      testCustomer.createBooking("2020/01/10", 4, testBookings.bookings)
       expect(testBookings.bookings[3].userID).to.equal(1)
       expect(testBookings.bookings[3].date).to.equal("2020/01/10")
       expect(testBookings.bookings[3].roomNumber).to.equal(4)
       expect(testBookings.bookings[3].roomServiceCharges).to.deep.equal([])
     });
     it('should return an affirmative upon a successful booking', function() {
-      expect(testCustomer.createNewBooking("2020/01/10", 4, testBookings.bookings)).to.equal('Your booking has been confirmed.')
+      expect(testCustomer.createBooking("2020/01/10", 4, testBookings.bookings)).to.equal('Your booking has been confirmed.')
     });
     it('should return an error upon an unsuccessful booking', function() {
-      expect(testCustomer.createNewBooking("2020/04/22", 1, testBookings.bookings)).to.equal('Oops, that room is unavailable.')
+      expect(testCustomer.createBooking("2020/04/22", 1, testBookings.bookings)).to.equal('Oops, that room is unavailable.')
     });
     it('should inform the user if they already booked a room', function() {
-      expect(testCustomer.createNewBooking("2020/01/10", 1, testBookings.bookings)).to.equal("Looks like you've already booked this room")
+      expect(testCustomer.createBooking("2020/01/10", 1, testBookings.bookings)).to.equal("Looks like you've already booked this room")
     })
   })
 

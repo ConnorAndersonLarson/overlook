@@ -1,4 +1,5 @@
 import './css/base.scss'
+import image from './images/overlook-hotel-party.jpg'
 import Hotel from './hotel';
 import Customer from './customer';
 
@@ -10,7 +11,7 @@ const apiData = [
 let allRooms, allBookings, allCustomers;
 let hotel;
 let customer;
-let todayDate = "2020/07/04"
+let todayDate = "2020-07-05"
 
 const guestName = document.querySelector('#guestName');
 const guestBookings = document.querySelector('#guestBookings');
@@ -30,22 +31,43 @@ bookRoom.addEventListener('click', bookingButtonPress);
 bookDate.addEventListener('blur', findAvailableRooms);
 filterRooms.addEventListener('click', filterThroughRooms);
 confirmationScreen.addEventListener('click', confirmPress);
+logInForm.addEventListener('click', logPress);
 let buttonsListener;
 
 function loadIn() {
   Promise.all(apiData)
     .then(responses => Promise.all(responses.map(response => response.json())))
     .then(data => {
+      if (data) {
       allRooms = data[0].rooms;
       allBookings = data[1].bookings;
       allCustomers = data[2].customers;
       createHotel(allRooms, allBookings, allCustomers)
+      }
     })
-  screenCheck()
+    .catch(err => showError(err.message))
+  setDate()
+}
+
+function showError(error) {
+  confirmationScreen.classList.toggle('hidden')
+  document.querySelector('#bookingResponse').innerText =
+  `Error: ${error} <br>Please Refresh and Try Again</br>`
 }
 
 function createHotel(rooms, bookings, customers) {
   hotel = new Hotel(rooms, bookings, customers)
+}
+
+function setDate() {
+  bookDate.min = todayDate;
+  bookDate.value = todayDate;
+}
+
+function logPress() {
+  if (event.target.id === 'logInButton') {
+    logIn()
+  }
 }
 
 function logIn() {
@@ -54,11 +76,13 @@ function logIn() {
   const cust = hotel.customers.find(cust => cust.id == userIndex)
   if (cust && logInForm.childNodes[7].value === 'overlook2021') {
     createCustomer(cust)
+    screenCheck()
     logInForm.classList.toggle('hidden')
+    bookRoom.classList.remove('hidden')
     bookRoom.innerHTML = 'Book your next visit'
   } else {
-    console.log('test')
-    document.querySelector('#errorMSG').classList.remove('hidden');
+    logInForm.childNodes[7].value = ''
+    document.querySelector('#errorMSG').classList.remove('invisible');
   }
 }
 
@@ -77,8 +101,8 @@ function updateDOM() {
 }
 
 function screenCheck() {
-  if (screen.width < 750) {
-    photoSection.classList.add('hidden');
+  if (screen.width > 750) {
+    photoSection.classList.remove('hidden');
   }
 }
 

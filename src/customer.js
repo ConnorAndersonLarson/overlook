@@ -29,25 +29,25 @@ class Customer {
     this.totalSpent = this.totalSpent.toFixed(2)
   }
 
-  // createNewBooking(date, room, endLocation) {
-  //   let booked = false;
-  //   let data = {
-  //     "userID": this.userID,
-  //     "date": date,
-  //     "roomNumber": room,
-  //     "roomServiceCharges": []}
-  //   booked = endLocation.find(booking => booking.date === date &&
-  //     booking.roomNumber === room)
-  //   if (!booked) {
-  //     endLocation.push(data);
-  //     return 'Your booking has been confirmed.';
-  //   } else if (booked.userID === this.userID) {
-  //     return "Looks like you've already booked this room";
-  //   } else {
-  //     return 'Oops, that room is unavailable.';
-  //   }
-  // }
-//{ "userID": 48, "date": "2019/09/23", "roomNumber": 4 }
+  createBooking(date, room, endLocation) {
+    let booked = false;
+    let data = {
+      "userID": this.userID,
+      "date": date,
+      "roomNumber": room,
+      "roomServiceCharges": []}
+    booked = endLocation.find(booking => booking.date === date &&
+      booking.roomNumber === room)
+    if (!booked) {
+      endLocation.push(data);
+      return 'Your booking has been confirmed.';
+    } else if (booked.userID === this.userID) {
+      return "Looks like you've already booked this room";
+    } else {
+      return 'Oops, that room is unavailable.';
+    }
+  }
+
   createNewBooking(roomData, endLocation) {
     let booking = {"userID": this.userID, "date": roomData[0],
       "roomNumber": roomData[1].number, "roomServiceCharges": []}
@@ -62,7 +62,7 @@ class Customer {
       }
       return response.json();
     })
-    .catch(err => console.log(err))
+    .catch(err => showError(err))
   }
 
 }
