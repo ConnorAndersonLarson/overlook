@@ -1,7 +1,12 @@
 class Customer {
   constructor(custInfo) {
-    this.userID = custInfo.id;
-    this.name = custInfo.name;
+    if(custInfo) {
+      this.userID = custInfo.id;
+      this.name = custInfo.name;
+    } else {
+      this.userID = 'guest';
+      this.name = 'guest';
+    }
     this.myBookings = [];
     this.bookedData = [];
     this.totalSpent = 0;

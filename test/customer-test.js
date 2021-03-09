@@ -4,7 +4,7 @@ import Customer from '../src/customer'
 const expect = chai.expect;
 
 describe('Customer', function() {
-  let testRooms, testBookings, testCustomers, testHotel, testCustomer;
+  let testRooms, testBookings, testCustomers, testHotel, testCustomer, testNoCustomer;
   let booking1, booking2, booking3;
 
   beforeEach(() => {
@@ -80,7 +80,8 @@ describe('Customer', function() {
       }
     ]};
     testHotel = new Hotel(testRooms, testBookings, testCustomers);
-    testCustomer = new Customer(testHotel.customers.customers[0])
+    testCustomer = new Customer(testHotel.customers.customers[0]);
+    testNoCustomer = new Customer();
   });
 
   describe('Properties', function() {
@@ -94,6 +95,12 @@ describe('Customer', function() {
     it('should have an ID', function() {
       expect(testCustomer.userID).to.equal(1);
     });
+    it('should revert to guest if no ID is given', function() {
+      expect(testNoCustomer.userID).to.equal('guest')
+    })
+    it('should revert to guest if no Name is given', function() {
+      expect(testNoCustomer.name).to.equal('guest')
+    })
     it('should have a name', function() {
       expect(testCustomer.name).to.equal('Leatha Ullrich');
     });
