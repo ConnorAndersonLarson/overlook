@@ -23,7 +23,7 @@ const filterRooms = document.querySelector('#filterRooms');
 const confirmationScreen = document.querySelector('#bookingConfirmation');
 const photoSection = document.querySelector('#photoSection');
 const columnHeader = document.querySelector('#roomColumnHeader');
-const loginForm = document.querySelector('#logInForm');
+const logInForm = document.querySelector('#logInForm');
 let bookButtons;
 
 window.addEventListener('load', loadIn);
@@ -39,20 +39,21 @@ function loadIn() {
     .then(responses => Promise.all(responses.map(response => response.json())))
     .then(data => {
       if (data) {
-      allRooms = data[0].rooms;
-      allBookings = data[1].bookings;
-      allCustomers = data[2].customers;
-      createHotel(allRooms, allBookings, allCustomers)
+        allRooms = data[0].rooms;
+        allBookings = data[1].bookings;
+        allCustomers = data[2].customers;
+        createHotel(allRooms, allBookings, allCustomers)
       }
     })
-    .catch(err => showError(err.message))
+    .catch(err => showError(err))
   setDate()
 }
 
 function showError(error) {
+  console.log(error)
   confirmationScreen.classList.toggle('hidden')
   document.querySelector('#bookingResponse').innerText =
-  `Error: ${error} <br>Please Refresh and Try Again</br>`
+  `Error: ${error.message} <br>Please Refresh and Try Again</br>`
 }
 
 function createHotel(rooms, bookings, customers) {

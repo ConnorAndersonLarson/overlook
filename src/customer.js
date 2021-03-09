@@ -1,6 +1,6 @@
 class Customer {
   constructor(custInfo) {
-    if(custInfo) {
+    if (custInfo) {
       this.userID = custInfo.id;
       this.name = custInfo.name;
     } else {
@@ -38,7 +38,7 @@ class Customer {
     let booked = false;
     let data = {
       "userID": this.userID,
-      "date": date,
+      date,
       "roomNumber": room,
       "roomServiceCharges": []}
     booked = endLocation.find(booking => booking.date === date &&
@@ -61,13 +61,13 @@ class Customer {
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(booking)
     })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(response.statusText);
-      }
-      return response.json();
-    })
-    .catch(err => showError(err))
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(response.statusText);
+        }
+        return response.json();
+      })
+      .catch(err => showError(err))
   }
 
 }
