@@ -90,6 +90,7 @@ footer {
 
 /*MAIN*/
 
+
 .bookings {
   display:flex;
   flex-direction: column;
@@ -103,6 +104,22 @@ footer {
   color: $brown;
   @include boxStandard(5px);
   border-radius: 10px;
+}
+
+.log-in {
+  @extend .booking;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 25%;
+  width: 60%;
+  margin:0;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
 }
 
 /*BOOKING FORM*/

@@ -14,10 +14,18 @@
       </div>
     </header>
       <section class="sub-header">
-        <h2 class="greeting room-column" id="roomColumnHeader">Your Previous Bookings:</h2>
-        <h2 class="greeting">Welcome Back, <span id="guestName">Honored Guest</span></h2>
+        <h2 class="greeting room-column" id="roomColumnHeader">Please Log In To Continue</h2>
+        <h2 class="greeting">Welcome, <span id="guestName">Honored Guest</span></h2>
       </section>
     <main>
+      <form class="log-in" id="logInForm">
+        <label for="username">Username</label>
+        <input type="text" placeholder="Enter Username" name="username" required />
+        <label for="password">Password</label>
+        <input type="password" placeholder="*****" name="password" required />
+        <button type="submit" class="book-a-room" id="logInButton">Log-In</button>
+        <h3 class="error hidden" id="errorMSG">Please check your credentials and try again.</h3>
+      </form>
       <section class="booking-form hidden" id="bookingForm">
         <h3 class="stay">Come Stay With Us...</h3>
         <div class="input date">
@@ -70,11 +78,11 @@
       </section>
     </main>
     <footer>
-        <section class="spending">
+        <section class="spending hidden" id="spending">
           <h3 class="total-spending">Your</br> Total</br> Spending:</h3>
           <h2 class="user-spending" id="userSpending">$</h2>
         </section>
-        <button type="button" class="book-a-room" id="bookRoom">Book your next visit</button>
+        <button type="button" class="book-a-room hidden" id="bookRoom">Book your next visit</button>
     </footer>
   </body>
 </html>

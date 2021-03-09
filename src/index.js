@@ -21,16 +21,18 @@ const bookDate = document.querySelector('#bookDate');
 const filterRooms = document.querySelector('#filterRooms');
 const confirmationScreen = document.querySelector('#bookingConfirmation');
 const photoSection = document.querySelector('#photoSection');
+const columnHeader = document.querySelector('#roomColumnHeader');
+const loginForm = document.querySelector('#logInForm');
 let bookButtons;
 
-window.addEventListener('load', screenCheck);
+window.addEventListener('load', loadIn);
 bookRoom.addEventListener('click', bookingButtonPress);
 bookDate.addEventListener('blur', findAvailableRooms);
 filterRooms.addEventListener('click', filterThroughRooms);
 confirmationScreen.addEventListener('click', confirmPress);
 let buttonsListener;
 
-
+function loadIn() {
   Promise.all(apiData)
     .then(responses => Promise.all(responses.map(response => response.json())))
     .then(data => {
@@ -39,15 +41,29 @@ let buttonsListener;
       allCustomers = data[2].customers;
       createHotel(allRooms, allBookings, allCustomers)
     })
-
+  screenCheck()
+}
 
 function createHotel(rooms, bookings, customers) {
   hotel = new Hotel(rooms, bookings, customers)
-  createCustomer(0);
+}
+
+function logIn() {
+  event.preventDefault()
+  const userIndex = logInForm.childNodes[3].value.split("r").pop()
+  const cust = hotel.customers.find(cust => cust.id == userIndex)
+  if (cust && logInForm.childNodes[7].value === 'overlook2021') {
+    createCustomer(cust)
+    logInForm.classList.toggle('hidden')
+    bookRoom.innerHTML = 'Book your next visit'
+  } else {
+    console.log('test')
+    document.querySelector('#errorMSG').classList.remove('hidden');
+  }
 }
 
 function createCustomer(customerInfo) {
-  customer = new Customer(allCustomers[0]);
+  customer = new Customer(customerInfo);
   customer.findBookings(allBookings, allRooms);
   customer.findTotal(allRooms);
   updateDOM()
@@ -61,7 +77,6 @@ function updateDOM() {
 }
 
 function screenCheck() {
-  console.log('test')
   if (screen.width < 750) {
     photoSection.classList.add('hidden');
   }
@@ -73,7 +88,8 @@ function updateDate() {
 }
 
 function updateGuestName() {
-  guestName.innerText = customer.name
+  guestName.innerText = `Back, ${customer.name}`;
+  columnHeader.innerText = 'Your Previous Bookings';
 }
 
 function updateBookings(data) {
@@ -106,6 +122,7 @@ function apologize() {
 }
 
 function updateTotalSpent() {
+  document.querySelector('#spending').classList.remove('hidden')
   userSpending.innerText += customer.totalSpent;
 }
 
@@ -135,7 +152,7 @@ function makeBooking() {
 
 function findAvailableRooms() {
   let date = event.target.value.split('-').join('/')
-  document.querySelector('#roomColumnHeader').innerText = "Available Rooms:"
+  columnHeader.innerText = "Available Rooms:"
   hotel.findOpenRooms(date)
   updateBookings(hotel.availableRooms)
   toggleButtons()
