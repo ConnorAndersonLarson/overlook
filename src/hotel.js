@@ -51,9 +51,8 @@ class Hotel {
   }
 
   chooseRoom(roomNumber) {
-    console.log(this.availableRooms)
-    this.selectedRoom = this.availableRooms.find(room => room[1].number == roomNumber)
-    console.log(this.selectedRoom)
+    this.selectedRoom = this.availableRooms.find(room =>
+      room[1].number == roomNumber)
   }
 
 }

@@ -1,6 +1,4 @@
-html{
-  width: 100%
-}
+
 
 * {
   font-family: $font;
@@ -9,17 +7,15 @@ html{
 body {
   background: $brown;
   height: 100%;
+  scroll-padding-bottom: 12%;
 }
 
 header {
-  position: fixed;
-  top: 0px;
   width: 100%;
   height: 26%;
 }
 
 main {
-  padding-top: 30%;
   padding-bottom: 26%;
 }
 
@@ -28,13 +24,13 @@ footer {
   bottom: 0px;
   width: 100%;
   margin: 0;
-  height:16%;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
+  height:12%;
+  @include centerFlex(space-around);
   color: $pink;
   background: center / cover url("../images/hotel-pattern.jpg");
 }
+
+/*HEADER*/
 
 .title{
   box-sizing: border-box;
@@ -74,10 +70,11 @@ footer {
 }
 
 .sub-header {
-  display: flex;
+  @include centerFlex(center);
   flex-direction: column-reverse;
-  align-items: center;
-  justify-content: center;
+  position: sticky;
+  position: -webkit-sticky;
+  top: -1px;
 }
 
 .greeting {
@@ -86,10 +83,12 @@ footer {
   color: $pink;
   background-color: $brown;
   margin: 0;
+  border: 1px solid $brown;
   padding: 10px 0px 10px 0px;
   width: 100%;
 }
 
+/*MAIN*/
 
 .bookings {
   display:flex;
@@ -102,10 +101,11 @@ footer {
   margin: 5%;
   padding-left: 10px;
   color: $brown;
-  border: 5px solid $red;
-  background-color: $pink;
+  @include boxStandard(5px);
   border-radius: 10px;
 }
+
+/*BOOKING FORM*/
 
 .book-button {
   width: 75%;
@@ -116,14 +116,11 @@ footer {
 }
 
 .booking-form {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  position: sticky;
+  top: 8%;
   height: 55%;
-  width: 90%;
-  background-color: $pink;
-  border: 7px solid $red;
+  margin: 0 2.5% 0 2.5%;
+  @include boxStandard(7px);
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
@@ -136,6 +133,7 @@ footer {
   font-size: 55px;
   align-self: center;
   width: 100%;
+  margin: 0 20px 0 20px;
   text-align: center;
 }
 
@@ -182,6 +180,10 @@ fieldset {
   border-color: $red;
   border-style: solid;
   padding: 5.6px 12px 5.6px 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
 }
 
 fieldset:focus-within {
@@ -190,7 +192,6 @@ fieldset:focus-within {
 
 input[type=radio] {
   opacity: 0;
-  //filter:alpha(opacity=0);
   position: absolute;
 }
 
@@ -218,14 +219,31 @@ input[type=radio]:checked + label:before {
   height: 50%;
   border-radius: 10px;
   font-size: 40px;
-  border: 5px solid $red;
-  background-color: $pink;
+  @include boxStandard(5px);
 }
 
+.confirmation {
+  @include centerFlex(space-around);
+  flex-direction: column;
+  width: 95%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%)
+}
+
+.return {
+  @extend .booking;
+  width: 50%;
+  height: 10%;
+
+}
+
+
+/*FOOTER*/
+
 .spending {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
+  @include centerFlex(space-around);
   width: 50%;
 }
 
@@ -244,6 +262,5 @@ input[type=radio]:checked + label:before {
   height: 25%;
   border-radius: 10px;
   font-size: 30px;
-  border: 5px solid $red;
-  background-color: $pink;
+  @include boxStandard(5px);
 }

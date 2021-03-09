@@ -14,6 +14,17 @@ $font: 'Sawarabi Mincho', sans-serif;
   1px 0 20px $pink;
 }
 
+@mixin boxStandard($borderwidth){
+  border: $borderwidth solid $red;
+  background-color: $pink;
+}
+
+@mixin centerFlex($justify){
+  display:flex;
+  align-items: center;
+  justify-content: $justify;
+}
+
 .accent {
   color: $red;
 }

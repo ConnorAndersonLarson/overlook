@@ -45,7 +45,12 @@
   .sub-header {
     flex-direction: row;
     justify-content: space-around;
+    position: fixed;
+    top: 9%;
+    width: 100%;
   }
+
+
 
   .greeting {
     text-align: end;
@@ -59,7 +64,7 @@
 
   .room-column {
     text-align: left;
-    padding-left: 6%; 
+    padding-left: 6%;
   }
 
   .bookings {

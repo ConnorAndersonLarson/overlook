@@ -19,21 +19,27 @@ const bookingForm = document.querySelector('#bookingForm');
 const bookRoom = document.querySelector('#bookRoom');
 const bookDate = document.querySelector('#bookDate');
 const filterRooms = document.querySelector('#filterRooms');
+const confirmationScreen = document.querySelector('#bookingConfirmation');
+const photoSection = document.querySelector('#photoSection');
 let bookButtons;
 
+window.addEventListener('load', screenCheck);
 bookRoom.addEventListener('click', bookingButtonPress);
 bookDate.addEventListener('blur', findAvailableRooms);
 filterRooms.addEventListener('click', filterThroughRooms);
+confirmationScreen.addEventListener('click', confirmPress);
 let buttonsListener;
 
-Promise.all(apiData)
-  .then(responses => Promise.all(responses.map(response => response.json())))
-  .then(data => {
-    allRooms = data[0].rooms;
-    allBookings = data[1].bookings;
-    allCustomers = data[2].customers;
-    createHotel(allRooms, allBookings, allCustomers)
-  })
+
+  Promise.all(apiData)
+    .then(responses => Promise.all(responses.map(response => response.json())))
+    .then(data => {
+      allRooms = data[0].rooms;
+      allBookings = data[1].bookings;
+      allCustomers = data[2].customers;
+      createHotel(allRooms, allBookings, allCustomers)
+    })
+
 
 function createHotel(rooms, bookings, customers) {
   hotel = new Hotel(rooms, bookings, customers)
@@ -52,6 +58,13 @@ function updateDOM() {
   updateGuestName()
   updateBookings(customer.bookedData)
   updateTotalSpent()
+}
+
+function screenCheck() {
+  console.log('test')
+  if (screen.width < 750) {
+    photoSection.classList.add('hidden');
+  }
 }
 
 function updateDate() {
@@ -107,13 +120,17 @@ function bookingButtonPress() {
 function showBookingForm() {
   bookingForm.classList.toggle('hidden');
   bookRoom.innerHTML = 'Confirm My Visit';
-  if (screen.width < 1000) {
-    guestBookings.classList.toggle('hidden');
-  }
+  photoSection.classList.add('hidden');
+  // if (screen.width < 1000) {
+  //   guestBookings.classList.toggle('hidden');
+  // }
 }
 
 function makeBooking() {
-
+  console.log(hotel.selectedRoom)
+  customer.createNewBooking(hotel.selectedRoom, allBookings)
+  document.querySelector('#bookingConfirmation').classList.toggle('hidden');
+  bookingForm.classList.toggle('hidden');
 }
 
 function findAvailableRooms() {
@@ -145,5 +162,11 @@ function toggleButtons() {
 
 function selectRoom() {
   hotel.chooseRoom(event.target.id)
-  console.log(event.target.id)
+
+}
+
+function confirmPress() {
+  if (event.target.id === 'return') {
+    window.location.reload()
+  }
 }
