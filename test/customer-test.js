@@ -4,79 +4,79 @@ import Customer from '../src/customer'
 const expect = chai.expect;
 
 describe('Customer', function() {
-let testRooms, testBookings, testCustomers, testHotel, testCustomer;
-let booking1, booking2, booking3;
+  let testRooms, testBookings, testCustomers, testHotel, testCustomer;
+  let booking1, booking2, booking3;
 
   beforeEach(() => {
-    testRooms = {"rooms":[
+    testRooms = {"rooms": [
       {
-        "number":1,
-        "roomType":"residential suite",
-        "bidet":true,
-        "bedSize":"queen",
-        "numBeds":1,
-        "costPerNight":358.4
-      },{
-        "number":2,
-        "roomType":"suite",
-        "bidet":false,
-        "bedSize":"full",
-        "numBeds":2,
-        "costPerNight":477.38
-      },{
-        "number":3,
-        "roomType":"single room",
-        "bidet":false,
-        "bedSize":"king",
-        "numBeds":1,
-        "costPerNight":491.14
-      },{
-        "number":4,
-        "roomType":"single room",
-        "bidet":false,
-        "bedSize":"queen",
-        "numBeds":1,
-        "costPerNight":429.44
+        "number": 1,
+        "roomType": "residential suite",
+        "bidet": true,
+        "bedSize": "queen",
+        "numBeds": 1,
+        "costPerNight": 358.4
+      }, {
+        "number": 2,
+        "roomType": "suite",
+        "bidet": false,
+        "bedSize": "full",
+        "numBeds": 2,
+        "costPerNight": 477.38
+      }, {
+        "number": 3,
+        "roomType": "single room",
+        "bidet": false,
+        "bedSize": "king",
+        "numBeds": 1,
+        "costPerNight": 491.14
+      }, {
+        "number": 4,
+        "roomType": "single room",
+        "bidet": false,
+        "bedSize": "queen",
+        "numBeds": 1,
+        "costPerNight": 429.44
       }
     ]};
-      booking1 = {
-        "id":"5fwrgu4i7k55hl6sz",
-        "userID":9,
-        "date":"2020/04/22",
-        "roomNumber":1,
-        "roomServiceCharges":[]
-      };
-      booking2 = {
-        "id":"5fwrgu4i7k55hl6t5",
-        "userID":1,
-        "date":"2020/01/24",
-        "roomNumber":4,
-        "roomServiceCharges":[]
-      };
-      booking3 = {
-        "id":"5fwrgu4i7k55hl6t6",
-        "userID":1,
-        "date":"2020/01/10",
-        "roomNumber":1,
-        "roomServiceCharges":[]
-      };
+    booking1 = {
+      "id": "5fwrgu4i7k55hl6sz",
+      "userID": 9,
+      "date": "2020/04/22",
+      "roomNumber": 1,
+      "roomServiceCharges": []
+    };
+    booking2 = {
+      "id": "5fwrgu4i7k55hl6t5",
+      "userID": 1,
+      "date": "2020/01/24",
+      "roomNumber": 4,
+      "roomServiceCharges": []
+    };
+    booking3 = {
+      "id": "5fwrgu4i7k55hl6t6",
+      "userID": 1,
+      "date": "2020/01/10",
+      "roomNumber": 1,
+      "roomServiceCharges": []
+    };
     testBookings = {"bookings": [booking1, booking2, booking3]};
-    testCustomers = {"customers":[
+    testCustomers = {"customers": [
       {
-        "id":1,
-        "name":"Leatha Ullrich"
-      },{
-        "id":2,
-        "name":"Rocio Schuster"
-      },{
-        "id":3,
-        "name":"Kelvin Schiller"
-      },{
-        "id":4,
-        "name":"Kennedi Emard"
-      },{
-        "id":5,
-        "name":"Rhiannon Little"
+        "id": 1,
+        "name": "Leatha Ullrich"
+      }, {
+        "id": 2,
+        "name": "Rocio Schuster"
+      }, {
+        "id": 3,
+        "name": "Kelvin Schiller"
+      }, {
+        "id": 4,
+        "name": "Kennedi Emard"
+      }, {
+        "id": 5,
+        "name": "Rhiannon Little"
       }
     ]};
     testHotel = new Hotel(testRooms, testBookings, testCustomers);
@@ -98,11 +98,14 @@ let booking1, booking2, booking3;
       expect(testCustomer.name).to.equal('Leatha Ullrich');
     });
     it('should have a list of all their bookings', function() {
-      testCustomer.findBookings(testBookings.bookings);
+      testCustomer.findBookings(testBookings.bookings, testRooms.rooms);
       expect(testCustomer.myBookings).to.deep.equal([booking2, booking3])
     });
+    it('should have a list of rooms booked with dates', function() {
+      expect(testCustomer.bookedData).to.deep.equal([]);
+    })
     it('should have a total amount spent on rooms', function() {
-      testCustomer.findBookings(testBookings.bookings);
+      testCustomer.findBookings(testBookings.bookings, testRooms.rooms);
       testCustomer.findTotal(testRooms.rooms);
       expect(testCustomer.totalSpent).to.equal("787.84")
     });

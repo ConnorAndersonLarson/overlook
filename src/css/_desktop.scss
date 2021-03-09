@@ -1,0 +1,151 @@
+@media screen and (min-width: 1000px) {
+
+  header {
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    height: 15%;
+  }
+
+  main {
+    padding-top: 5%;
+    padding-bottom: 3%;
+  }
+
+  footer {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    margin: 0;
+    height:11%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    color: $pink;
+    background: center / cover url("../images/hotel-pattern.jpg")
+  }
+
+  .title{
+    box-sizing: border-box;
+    display: grid;
+    grid-template:
+      "welcome overlook hotel guest" 100%
+      /33% 34% 33%;
+    height: 60%;
+    width: 100%;
+    justify-items: center;
+    background-color: $brown;
+  }
+
+  .welcome, .overlook, .hotel {
+    align-self: center;
+    @include hexFont(45px);
+  }
+
+  .sub-header {
+    flex-direction: row;
+    justify-content: space-around;
+    position: fixed;
+    top: 9%;
+    width: 100%;
+  }
+
+
+
+  .greeting {
+    text-align: end;
+    font-size: 25px;
+    color: $pink;
+    background-color: $brown;
+    margin: 0;
+    padding: 10px 30px 10px 0px;
+    width: 50%
+  }
+
+  .room-column {
+    text-align: left;
+    padding-left: 6%;
+  }
+
+  .bookings {
+    display:flex;
+    flex-direction: column;
+    margin: 5%;
+  }
+
+  .booking {
+    width: 45%;
+    font-size: 25px;
+    margin: 2%;
+    padding-left: 10px;
+    color: $brown;
+    border: 5px solid $red;
+    background-color: $pink;
+    border-radius: 10px;
+  }
+
+  .booking-form {
+    position: fixed;
+    top: 50%;
+    left: 75%;
+    transform: translate(-50%, -50%);
+    height: 60%;
+    width: 40%;
+    background-color: $pink;
+    border: 7px solid $red;
+  }
+
+  .stay{
+    font-size: 25px;
+    align-self: center;
+  }
+
+  .input > * {
+    font-size: 20px
+  }
+
+  fieldset {
+    legend {
+      font-size: 20px;
+    }
+    .input > * {
+      font-size: 18px;
+    }
+  }
+
+  input[type=radio] + label:before {
+    height: 15px;
+    width: 15px;
+  }
+
+  .filter-button {
+    font-size: 25px;
+  }
+
+  .spending {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-left: 90px;
+    width: 50%;
+  }
+
+  .total-spending {
+    //height: 100%;
+    @include hexFont(25px);
+  }
+  .user-spending {
+    height: 100%;
+    @include hexFont(40px);
+  }
+
+  .book-a-room {
+    width: 30%;
+    height: 50%;
+    border-radius: 10px;
+    font-size: 25px;
+    border: 5px solid $red;
+    background-color: $pink;
+  }
+
+}

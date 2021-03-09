@@ -12,29 +12,69 @@
         <h2 class="welcome">The Scenic</h2>
         <h2 class="hotel">Hotel</h2>
       </div>
-      <h2 class="greeting">Welcome Back, <span id="guestName">Honored Guest</span></h2>
     </header>
+      <section class="sub-header">
+        <h2 class="greeting room-column" id="roomColumnHeader">Your Previous Bookings:</h2>
+        <h2 class="greeting">Welcome Back, <span id="guestName">Honored Guest</span></h2>
+      </section>
     <main>
-      <section class="bookings" id="guestBookings">
-        <!-- <div>
-          <h3>Your current booking</h3>
-          <section>
-          </section>
+      <section class="booking-form hidden" id="bookingForm">
+        <h3 class="stay">Come Stay With Us...</h3>
+        <div class="input date">
+          <label for="bookDate">Date: </label>
+          <input type="date" id="bookDate" name="Book Date"
+          value="2020-07-04" min="2020/01/01" max="2022/01/01"/>
         </div>
-        <div>
-          <h3>Your future bookings</h3>
-          <section>
-          </section>
-        </div> -->
+        <div class="room-features">
+          <div class="input room-type">
+            <label for="roomType">Room Type: </label>
+            <select id="roomType" name="roomType">
+              <option value="single room">single room</option>
+              <option value="junior suite">junior suite</option>
+              <option value="suite">suite</option>
+              <option value="residential suite">residential suite</option>
+            </select>
+          </div>
+          <div class="input bed-num">
+            <label for="numBeds">Number of Beds: </label>
+            <input type="number" class="num-beds" id="numBeds" name="beds" min="1" max="2" value="1"/>
+          </div>
+          <button type="button" class="filter-button" id="filterRooms">Filter</button>
+          <fieldset>
+            <legend for="Bidet">Bidet?</legend>
+            <div class="input">
+              <input type="radio" id="yes" name="Bidet" value="true" checked />
+              <label for="yes">Yes</label>
+            </div>
+            <div class="input">
+              <input type="radio" id="no" name="Bidet" value=""/>
+              <label for="no">No</label>
+            </div>
+            <div class="input">
+              <input type="radio" id="doesntMatter" name="Bidet"
+              value="maybe"/>
+              <label for="doesntMatter">Doesn't Matter</label>
+            </div>
+          </fieldset>
+        </div>
+        <h3 class="stay">For Ever, and Ever, and Ever...</h3>
+      </section>
+      <section class="bookings" id="guestBookings">
+      </section>
+      <section class="booking-form" id="photoSection">
+        <img src="./images/overlook-hotel-party.jpg" alt="An old photo of an extravagant party at the Overlook Hotel" class="photo" />
+      </section>
+      <section class="booking-form confirmation hidden" id="bookingConfirmation">
+        <h2 class="greeting" id="bookingResponse">Your booking has been added.</h2>
+        <button type="reset" class="return" id="return">Return</button>
       </section>
     </main>
     <footer>
-      <div>
-        <h2>Book your next visit</h2>
-        <section>
-          <h3>Your Total Spending:</h3>
+        <section class="spending">
+          <h3 class="total-spending">Your</br> Total</br> Spending:</h3>
+          <h2 class="user-spending" id="userSpending">$</h2>
         </section>
-      </div>
+        <button type="button" class="book-a-room" id="bookRoom">Book your next visit</button>
     </footer>
   </body>
 </html>
