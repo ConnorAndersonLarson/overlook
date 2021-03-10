@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <title>Overlook</title>
+    <meta content='All work and no play make jack a dull boy all work and no play make jack a dull boy all work and no play make jack a dull boy all work and now play make jask a dull boy all work and no play make jack a dull boy all work and no play make jack a dull put all work and now play make jack a dull boy all work and now pay make jack a dull bou all work and no paly make jack a dull boy all work and no play make jack a dull boy all work and no play make jack adull boy all work and no play make jack a dull boy all work and no play make jack a dull boy all work and no paly make jack a dull boy all work and no play make jack a doll boy all work and no play make jack a dull boy all wok and no play make jack a dull boy all owork and no play make jack a dull boy all work and no play make jack a dull boy all work and no play make jack a dull boy all work and no lpay make a jcak a dull boy all work and no play jake jack a udll boy all work and no play jake jackk a dull oy all workk'>
+    <meta charset='UTF-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A hotel room booking site for the illustrious Overlook Hotel, recently reopened following some unfortunate events that transpired in the seventies." />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Sawarabi+Mincho&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <header>
+      <div class="title">
+        <h1 class="overlook">Overlook</h1>
+        <h2 class="welcome">The Scenic</h2>
+        <h2 class="hotel">Hotel</h2>
+      </div>
+    </header>
+      <section class="sub-header">
+        <h2 class="greeting room-column" id="roomColumnHeader">Please Log In To Continue</h2>
+        <h2 class="greeting">Welcome, <span id="guestName">Honored Guest</span></h2>
+      </section>
+    <main>
+      <form class="log-in" id="logInForm">
+        <label for="username">Username</label>
+        <input type="text" placeholder="Enter Username" name="username" id="username" required />
+        <label for="password">Password</label>
+        <input type="password" placeholder="*****" name="password" id="password" required />
+        <button type="submit" class="book-a-room" id="logInButton">Log-In</button>
+        <h3 class="error invisible" id="errorMSG">Please check your credentials and try again.</h3>
+      </form>
+      <section class="booking-form hidden" id="bookingForm">
+        <h3 class="stay">Come Stay With Us...</h3>
+        <div class="input date">
+          <label for="bookDate">Date: </label>
+          <input type="date" id="bookDate" name="Book Date"
+          value="2020-07-04" min="2020-01-01" max="2022-01-01"/>
+        </div>
+        <div class="room-features">
+          <div class="input room-type">
+            <label for="roomType">Room Type: </label>
+            <select id="roomType" name="roomType">
+              <option value="single room">single room</option>
+              <option value="junior suite">junior suite</option>
+              <option value="suite">suite</option>
+              <option value="residential suite">residential suite</option>
+            </select>
+          </div>
+          <div class="input bed-num">
+            <label for="numBeds">Number of Beds: </label>
+            <input type="number" class="num-beds" id="numBeds" name="beds" min="1" max="2" value="1"/>
+          </div>
+          <button type="button" class="filter-button" id="filterRooms">Filter</button>
+          <fieldset>
+            <legend for="Bidet">Bidet?</legend>
+            <div class="input">
+              <input type="radio" id="yes" name="Bidet" value="true" checked />
+              <label for="yes">Yes</label>
+            </div>
+            <div class="input">
+              <input type="radio" id="no" name="Bidet" value=""/>
+              <label for="no">No</label>
+            </div>
+            <div class="input">
+              <input type="radio" id="doesntMatter" name="Bidet"
+              value="maybe"/>
+              <label for="doesntMatter">No Pref.</label>
+            </div>
+          </fieldset>
+        </div>
+        <h3 class="stay">For Ever, and Ever, and Ever...</h3>
+      </section>
+      <section class="bookings" id="guestBookings">
+      </section>
+      <section class="booking-form hidden" id="photoSection">
+        <img src="./images/overlook-hotel-party.jpg" alt="An old photo of an extravagant party at the Overlook Hotel" class="photo" />
+      </section>
+      <section class="booking-form confirmation hidden" id="bookingConfirmation">
+        <h2 class="greeting" id="bookingResponse">Your booking has been added.</h2>
+        <button type="reset" class="return" id="return">Return</button>
+      </section>
+    </main>
+    <footer>
+        <section class="spending hidden" id="spending">
+          <h3 class="total-spending">Your</br> Total</br> Spending:</h3>
+          <h2 class="user-spending" id="userSpending">$</h2>
+        </section>
+        <button type="button" class="book-a-room hidden" id="bookRoom">Book your next visit</button>
+    </footer>
+  <script src="main.bundle.js"></script></body>
+</html>
