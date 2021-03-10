@@ -4,6 +4,10 @@
   font-family: $font;
 }
 
+button {
+  cursor: pointer;
+}
+
 body {
   background: $brown;
   height: 100%;

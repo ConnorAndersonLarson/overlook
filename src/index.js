@@ -163,15 +163,12 @@ function showBookingForm() {
   bookingForm.classList.toggle('hidden');
   bookRoom.innerHTML = 'Confirm My Visit';
   photoSection.classList.add('hidden');
-  // if (screen.width < 1000) {
-  //   guestBookings.classList.toggle('hidden');
-  // }
 }
 
 function makeBooking() {
-  console.log(hotel.selectedRoom)
   customer.createNewBooking(hotel.selectedRoom, allBookings)
   document.querySelector('#bookingConfirmation').classList.toggle('hidden');
+  userSpending.innerText += customer.totalSpent;
   bookingForm.classList.toggle('hidden');
 }
 
