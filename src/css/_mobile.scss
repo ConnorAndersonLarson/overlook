@@ -4,6 +4,10 @@
   font-family: $font;
 }
 
+button {
+  cursor: pointer;
+}
+
 body {
   background: $brown;
   height: 100%;
@@ -28,6 +32,14 @@ footer {
   @include centerFlex(space-around);
   color: $pink;
   background: center / cover url("../images/hotel-pattern.jpg");
+  .book-a-room {
+    width: 33%;
+    height: 50%;
+    border-radius: 10px;
+    font-size: 3vw;
+    padding: 0px;
+    @include boxStandard(5px);
+  }
 }
 
 /*HEADER*/
@@ -49,7 +61,7 @@ footer {
 
 .overlook{
   align-self: center;
-  @include hexFont(55px);
+  @include hexFont(2.5em);
   grid-area: overlook;
   margin:0;
 }
@@ -57,16 +69,16 @@ footer {
 .welcome{
   grid-area: welcome;
   justify-self: flex-start;
-  margin-left: 9%;
-  @include hexFont(45px);
+  margin: 10px 0 10px 9%;
+  @include hexFont(1.5em);
 }
 
 .hotel{
   grid-area: hotel;
   justify-self: flex-end;
   align-self: flex-end;
-  margin-right: 10%;
-  @include hexFont(45px);
+  margin: 10px 10% 10px 0;
+  @include hexFont(1.5em);
 }
 
 .sub-header {
@@ -79,16 +91,17 @@ footer {
 
 .greeting {
   text-align: center;
-  font-size: 40px;
+  font-size: 1.5em;
   color: $pink;
   background-color: $brown;
   margin: 0;
   border: 1px solid $brown;
-  padding: 10px 0px 10px 0px;
+  padding: 5px 0px 5px 0px;
   width: 100%;
 }
 
 /*MAIN*/
+
 
 .bookings {
   display:flex;
@@ -97,12 +110,41 @@ footer {
 }
 
 .booking {
-  font-size: 25px;
+  font-size: 3.75vw;
   margin: 5%;
   padding-left: 10px;
   color: $brown;
   @include boxStandard(5px);
   border-radius: 10px;
+}
+
+.log-in {
+  @extend .booking;
+  position: fixed;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 35%;
+  width: 65%;
+  margin:0;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .book-a-room {
+    width: 50%;
+    height: 25%;
+    border-radius: 10px;
+    font-size: 6vw;
+    margin-top: 25px;
+    @include boxStandard(5px);
+  }
+}
+
+
+.error {
+  font-size: 1em;
+  text-align: center;
 }
 
 /*BOOKING FORM*/
@@ -117,7 +159,7 @@ footer {
 
 .booking-form {
   position: sticky;
-  top: 8%;
+  top: 4.75em;
   height: 55%;
   margin: 0 2.5% 0 2.5%;
   @include boxStandard(7px);
@@ -125,28 +167,29 @@ footer {
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: space-around;
-  padding: 20px;
+  padding: 10px;
   border-radius: 10px;
 }
 
 .stay{
-  font-size: 55px;
+  font-size: 4.75vw;
   align-self: center;
   width: 100%;
   margin: 0 20px 0 20px;
   text-align: center;
 }
 
-.input {
-  margin: 10px 0 10px 0;
+#roomType {
+  width: 100%;
 }
 
 .input > * {
-  font-size: 40px
+  font-size: 3.75vw;
 }
 
 .date {
   width: 100%;
+  margin: 15px;
   align-self: center;
   text-align: center;
 }
@@ -173,7 +216,7 @@ footer {
 
 fieldset {
   legend {
-    font-size: 40px;
+    font-size: 3.75vw;
   }
   grid-area: bidet;
   height: 100%;
@@ -196,8 +239,8 @@ input[type=radio] {
 }
 
 input[type=radio] + label:before {
-  height: 22px;
-  width: 22px;
+  height: .75em;
+  width: .75em;
   margin: 3px 10px 3px 10px;
   content: " ";
   display: inline-block;
@@ -216,27 +259,31 @@ input[type=radio]:checked + label:before {
 
 .filter-button {
   width: 80%;
-  height: 50%;
+  height: 80%;
   border-radius: 10px;
-  font-size: 40px;
+  font-size: 1.25em;
   @include boxStandard(5px);
 }
 
 .confirmation {
   @include centerFlex(space-around);
-  flex-direction: column;
-  width: 95%;
+  width: 75%;
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%)
+  transform: translate(-50%, -50%);
+  margin: 0;
+  .greeting {
+    border: 5px solid $orange;
+    border-radius: 10px;
+  }
 }
 
 .return {
   @extend .booking;
   width: 50%;
   height: 10%;
-
+  font-size: 5vw;
 }
 
 
@@ -248,19 +295,10 @@ input[type=radio]:checked + label:before {
 }
 
 .total-spending {
-  font-size: 45px;
   height: 100%;
-  @include hexFont(40px);
+  @include hexFont(1.25em);
 }
 .user-spending {
   height: 100%;
-  @include hexFont(55px);
-}
-
-.book-a-room {
-  width: 35%;
-  height: 25%;
-  border-radius: 10px;
-  font-size: 30px;
-  @include boxStandard(5px);
+  @include hexFont(1.75em);
 }

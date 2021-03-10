@@ -1,9 +1,14 @@
 @import 'normalize';
 @import 'color';
 @import 'mobile';
+@import 'tablet';
 @import 'desktop';
 
 .hidden {
   display: none;
+  visibility: hidden;
+}
+
+.invisible {
   visibility: hidden;
 }

@@ -128,13 +128,18 @@ describe('Hotel', function() {
       expect(testHotel.createNewBooking(2, "2020/01/10", 1, testBookings)).to.equal('Oops, that room is unavailable.')
     });
     it('should create a list of available rooms on a given day', function() {
-      expect(testHotel.findOpenRooms("2020/01/10")).to.deep.equal([room2, room3, room4])
+      expect(testHotel.findOpenRooms("2020/01/10")).to.deep.equal([["2020/01/10", room2], ["2020/01/10", room3], ["2020/01/10", room4]])
     });
     it('should be able to filter through available rooms', function() {
       let roomFilter = {'roomType': 'suite', 'bidet': false, 'numBeds': 2}
       testHotel.findOpenRooms("2020/01/10")
       testHotel.filterRooms(roomFilter)
-      expect(testHotel.bookingData).to.deep.equal([["2020/01/10", room2]])
+      expect(testHotel.filteredRooms).to.deep.equal([["2020/01/10", room2]])
+    });
+    it('should be able to store room data based off a room number', function() {
+      testHotel.findOpenRooms("2020/01/10")
+      testHotel.chooseRoom(4);
+      expect(testHotel.selectedRoom).to.deep.equal(["2020/01/10", room4])
     })
   });
 });

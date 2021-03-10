@@ -13,28 +13,16 @@
   }
 
   footer {
-    position: fixed;
-    bottom: 0px;
-    width: 100%;
-    margin: 0;
-    height:11%;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    color: $pink;
-    background: center / cover url("../images/hotel-pattern.jpg")
+    height:12%;
+    .book-a-room {
+      height: 75%;
+    }
   }
 
   .title{
-    box-sizing: border-box;
-    display: grid;
     grid-template:
       "welcome overlook hotel guest" 100%
       /33% 34% 33%;
-    height: 60%;
-    width: 100%;
-    justify-items: center;
-    background-color: $brown;
   }
 
   .welcome, .overlook, .hotel {
@@ -50,14 +38,22 @@
     width: 100%;
   }
 
+  .log-in {
+    height: 35%;
+    top: 50%;
+    .book-a-room {
+      font-size: 3vw;
+    }
+  }
 
+  .photo {
+    object-fit: contain;
+    width: 100%;
+  }
 
   .greeting {
     text-align: end;
     font-size: 25px;
-    color: $pink;
-    background-color: $brown;
-    margin: 0;
     padding: 10px 30px 10px 0px;
     width: 50%
   }
@@ -67,21 +63,10 @@
     padding-left: 6%;
   }
 
-  .bookings {
-    display:flex;
-    flex-direction: column;
-    margin: 5%;
-  }
-
   .booking {
     width: 45%;
     font-size: 25px;
     margin: 2%;
-    padding-left: 10px;
-    color: $brown;
-    border: 5px solid $red;
-    background-color: $pink;
-    border-radius: 10px;
   }
 
   .booking-form {
@@ -91,8 +76,6 @@
     transform: translate(-50%, -50%);
     height: 60%;
     width: 40%;
-    background-color: $pink;
-    border: 7px solid $red;
   }
 
   .stay{
@@ -130,22 +113,24 @@
     width: 50%;
   }
 
-  .total-spending {
-    //height: 100%;
-    @include hexFont(25px);
-  }
-  .user-spending {
-    height: 100%;
-    @include hexFont(40px);
-  }
-
   .book-a-room {
     width: 30%;
     height: 50%;
     border-radius: 10px;
-    font-size: 25px;
-    border: 5px solid $red;
-    background-color: $pink;
+    font-size: 3vw;
+    @include boxStandard(5px);
+  }
+
+  .book-button {
+    width: 60%;
+  }
+
+  .confirmation {
+    .greeting {
+      width: 95%;
+      text-align: center;
+      padding: 10px;
+    }
   }
 
 }

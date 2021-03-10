@@ -4,7 +4,7 @@ import Customer from '../src/customer'
 const expect = chai.expect;
 
 describe('Customer', function() {
-  let testRooms, testBookings, testCustomers, testHotel, testCustomer;
+  let testRooms, testBookings, testCustomers, testHotel, testCustomer, testNoCustomer;
   let booking1, booking2, booking3;
 
   beforeEach(() => {
@@ -80,7 +80,8 @@ describe('Customer', function() {
       }
     ]};
     testHotel = new Hotel(testRooms, testBookings, testCustomers);
-    testCustomer = new Customer(testHotel.customers.customers[0])
+    testCustomer = new Customer(testHotel.customers.customers[0]);
+    testNoCustomer = new Customer();
   });
 
   describe('Properties', function() {
@@ -94,6 +95,12 @@ describe('Customer', function() {
     it('should have an ID', function() {
       expect(testCustomer.userID).to.equal(1);
     });
+    it('should revert to guest if no ID is given', function() {
+      expect(testNoCustomer.userID).to.equal('guest')
+    })
+    it('should revert to guest if no Name is given', function() {
+      expect(testNoCustomer.name).to.equal('guest')
+    })
     it('should have a name', function() {
       expect(testCustomer.name).to.equal('Leatha Ullrich');
     });
@@ -113,20 +120,20 @@ describe('Customer', function() {
 
   describe('Methods', function() {
     it('should be able to create a new booking', function() {
-      testCustomer.createNewBooking("2020/01/10", 4, testBookings.bookings)
+      testCustomer.createBooking("2020/01/10", 4, testBookings.bookings)
       expect(testBookings.bookings[3].userID).to.equal(1)
       expect(testBookings.bookings[3].date).to.equal("2020/01/10")
       expect(testBookings.bookings[3].roomNumber).to.equal(4)
       expect(testBookings.bookings[3].roomServiceCharges).to.deep.equal([])
     });
     it('should return an affirmative upon a successful booking', function() {
-      expect(testCustomer.createNewBooking("2020/01/10", 4, testBookings.bookings)).to.equal('Your booking has been confirmed.')
+      expect(testCustomer.createBooking("2020/01/10", 4, testBookings.bookings)).to.equal('Your booking has been confirmed.')
     });
     it('should return an error upon an unsuccessful booking', function() {
-      expect(testCustomer.createNewBooking("2020/04/22", 1, testBookings.bookings)).to.equal('Oops, that room is unavailable.')
+      expect(testCustomer.createBooking("2020/04/22", 1, testBookings.bookings)).to.equal('Oops, that room is unavailable.')
     });
     it('should inform the user if they already booked a room', function() {
-      expect(testCustomer.createNewBooking("2020/01/10", 1, testBookings.bookings)).to.equal("Looks like you've already booked this room")
+      expect(testCustomer.createBooking("2020/01/10", 1, testBookings.bookings)).to.equal("Looks like you've already booked this room")
     })
   })
 
