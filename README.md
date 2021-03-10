@@ -25,7 +25,7 @@ The Overlook Hotel is a solo web build with a focus on SASS, OOP, TTD, and API d
 
 ## Deploy Link:
 
-* [Click here to go to The Overlook](https://connorandersonlarson.github.com)
+* [Click here to go to The Overlook](http://ConnorAndersonLarson.github.io/overlook)
 
 ## Initial Setup:
 
