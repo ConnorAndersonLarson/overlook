@@ -41,19 +41,19 @@ The Overlook Hotel is a solo web build with a focus on SASS, OOP, TTD, and API d
 
 ## Site Features
 
-<img src=".github/readme-images/overlook-log-in.gif">
+<img src="./.github/readme_images/overlook-log-in.gif">
 
 * Log-in Page
 
-<img src=".github/readme-images/book-room.gif">
+<img src="./.github/readme_images/book-room.gif">
 
 * Booking a Room
 
-<img src=".github/readme-images/tablet-view.png">
+<img src="./.github/readme_images/tablet-view.png">
 
 * Tablet View
 
-<img src=".github/readme-images/mobile-view.png">
+<img src="./.github/readme_images/mobile-view.png">
 
 * Mobile View
 
